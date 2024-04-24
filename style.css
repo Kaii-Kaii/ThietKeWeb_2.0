@@ -5,10 +5,15 @@
     height: auto;
     display: flex;
     align-items: center;
-    background: url(./image/back.jpg);
-    background-size: cover;
-    /* Đảm bảo kích thước hình ảnh phù hợp với kích thước phần tử */
-    background-position: 40% 80%;
+    background-color: #f2b6c1;
+    position: fixed; /* Thêm thuộc tính này */
+    top: 0;
+    left: 0;
+    z-index: 100; /* Đảm bảo header luôn ở trên các element khác */
+}
+
+#content {
+    padding-top: 60px; /* Điều chỉnh giá trị này cho phù hợp với chiều cao của header */
 }
 
 #content {
@@ -52,7 +57,8 @@
     display: inline-block;
     padding: 10px;
     color: rgb(0, 0, 0);
-    position: relative;  /* Add this line */ 
+    position: relative;
+    /* Add this line */
 }
 
 #menu>.main_menu>a {
@@ -69,7 +75,7 @@
 }
 
 #menu>.main_menu>a:hover {
-    background-color: rgba(124, 124, 124, 0.5);
+    background-color: rgba(124, 124, 124, 0.6);
     /* Màu xám trong suốt khi hover */
     padding: 15px;
     /* Tăng kích thước padding khi hover */
@@ -82,17 +88,22 @@
 #icon_head {
     color: black;
     display: inline-block;
+    margin: 10px;
     margin-right: 20px;
     font-size: 30px;
+
 }
+
 .hidden {
     display: none;
 }
+
 #banner {
     width: 100%;
     display: inline-block;
     z-index: 1;
 }
+
 #banner img {
     margin: 0;
     position: absolute;
@@ -101,7 +112,8 @@
 }
 
 #banner img:first-child {
-    left: 0; /* Ảnh đầu tiên hiển thị */
+    left: 0;
+    /* Ảnh đầu tiên hiển thị */
 }
 
 .img_banner {
@@ -110,9 +122,11 @@
     min-height: 427.19px;
     max-height: 427.19px;
 }
+
 #sub_menu {
+    padding: 0;
     top: 47px;
-    left: -17.5%;
+    margin-left: 5px;
     text-align: center;
     position: absolute;
     z-index: 100;
@@ -123,23 +137,56 @@
     line-height: 50px;
     border: 2px solid gray;
     text-align: center;
-    background-color: rgba(124, 124, 124, 0.25);
+    background-color: rgba(124, 124, 124, 0.622);
     width: auto;
     height: 50px;
-    z-index: 100 !important;         /* Ensure it's above other elements */
+    z-index: 100 !important;
 }
 
-.sub_menu > a {
+.sub_menu>a {
     color: black;
-    padding:  10px;
+    padding: 10px;
     height: auto;
     width: auto;
     text-decoration: none;
 }
 
-#menu > li.main_menu > a:hover + ul#sub_menu,
-#sub_menu:hover {
-    display: block; 
+.sub_menu:hover {
+    background-color: rgba(255, 255, 255, 0.774);
 }
 
+#menu>li.main_menu>a:hover+ul#sub_menu,
+#sub_menu:hover {
+    display: block;
+}
+
+#searchWindow {
+    font-size: 20px;
+    margin-top: 25px;
+    position: absolute;
+    top: 40px;
+    right: 10px;
+    width: 275px;
+    height: auto;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 2000;
+}
+
+#searchWindow li {
+    line-height:  40px;
+    white-space: nowrap;
+    /* Ngăn văn bản xuống dòng */
+    overflow: hidden;
+    /* Ẩn phần văn bản vượt quá kích thước */
+    text-overflow: ellipsis;
+    /* Thêm dấu "..." vào cuối văn bản bị ẩn */
+}
+
+#searchInput {
+    width: 200px;
+    padding: 5px;
+}
 

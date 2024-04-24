@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
-<body style="margin: 0; z-index: 1;">
+<body style="margin: 0; z-index: 1; overflow-x: hidden;">
     <header id="header">
         <div id="logo" style="margin-left: 20px;">SKYBOOK</div>
         <ul id="menu" type="none">
@@ -30,8 +30,13 @@
         </ul>
         <ul type="none" id="icon_head">
             <li style="display: inline-block;">
-                <ion-icon name="search-outline"></ion-icon>
+                <ion-icon name="search-outline" id="searchIcon"></ion-icon>
             </li>
+            <div id="searchWindow" style="display: none;">
+                <input type="text" id="searchInput" placeholder="Tìm kiếm...">
+                <button id="closeButton">Đóng</button>
+                <ul id="searchResult" style="padding: 0;"></ul>
+            </div>
             <li style="display: inline-block;"><ion-icon name="cart-outline"></ion-icon></li>
             <li style="display: inline-block;"><ion-icon name="person-circle-outline"></ion-icon></li>
         </ul>
@@ -45,7 +50,11 @@
         <div id="main">
             <div id="NewBook" style="margin: 5px;">
                 <h2 style="margin-left: 20px;">Sách Mới</h2>
-                <div id="listBook" style="width: 100%; height: auto;"></div>
+                <div id="New" style="width: 100%; height: auto;"></div>
+            </div>
+            <div id="TamLyBook" style="margin: 5px;">
+                <h2 style="margin-left: 20px;">Sách Tâm Lý</h2>
+                <div id="TamLy" style="width: 100%; height: auto;"></div>
             </div>
         </div>
     </div>
@@ -55,10 +64,12 @@
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="./JS/banner.js"></script>
     <script>
-        window.onload = function() {
-            loadContent('azy', 'listBook'); 
+        window.onload = function () {
+            loadContent('azy', 'New');
+            loadContent('azy', 'TamLy');
         };
     </script>
-    <script src="./JS/base.js" ></script>
+    <script src="./JS/sraech.js"></script>
+    <script src="./JS/base.js"></script>
 </body>
 </html>

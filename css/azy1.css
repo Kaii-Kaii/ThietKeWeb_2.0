@@ -67,12 +67,16 @@
 
 /* Các kiểu khác giống như trước */
 
-.azh {
+/* .azh {
     border: 1px solid black;
-}
+} */
 
 .azh:hover {
-    border: 2px solid black;
+    box-shadow: 5px 5px 5px rgb(86, 86, 86);
     background-color: rgba(128, 128, 128, 0.385);
     transform: scale(1.05);
+}
+
+.book-details {
+    padding: 10px;
 }
