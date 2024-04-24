@@ -12,10 +12,11 @@
 }
 
 #content {
-    background-color: aquamarine;
+    background-color: rgb(255, 255, 255);
     width: 100%;
     height: auto;
     margin: 0;
+    padding-bottom: 50px;
 }
 
 #footer {
@@ -62,17 +63,16 @@
     color: rgb(0, 0, 0);
     background-color: transparent;
     /* Thiết lập màu nền trong suốt */
-    transition: background-color 0.3s ease, padding 0.3s ease;
+    transition: background-color 0.6s ease, padding 0.3s ease;
     /* Thêm hiệu ứng chuyển đổi */
 
 }
 
 #menu>.main_menu>a:hover {
-    background-color: rgba(128, 128, 128, 0.3);
+    background-color: rgba(124, 124, 124, 0.5);
     /* Màu xám trong suốt khi hover */
     padding: 15px;
     /* Tăng kích thước padding khi hover */
-
 }
 
 #icon_head>li:hover {
@@ -123,7 +123,7 @@
     line-height: 50px;
     border: 2px solid gray;
     text-align: center;
-    background-color: rgba(218, 17, 198, 0.593);
+    background-color: rgba(124, 124, 124, 0.25);
     width: auto;
     height: 50px;
     z-index: 100 !important;         /* Ensure it's above other elements */
@@ -141,4 +141,5 @@
 #sub_menu:hover {
     display: block; 
 }
+
 

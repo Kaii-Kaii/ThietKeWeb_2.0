@@ -1,0 +1,78 @@
+/* Thiết lập kiểu cho bảng */
+.book-table {
+    width: 100%; /* Chiều rộng của bảng là 100% của trang */
+    border-collapse: collapse; /* Loại bỏ khoảng cách giữa các ô */
+}
+
+/* Thiết lập kiểu cho các ô trong bảng */
+.book-table td {
+    padding: 0px; /* Khoảng cách giữa nội dung và viền của ô */
+    border: 1px solid #ccc; /* Định dạng viền của ô */
+    margin: 0px;
+}
+
+/* Thiết lập kiểu viền cho hình ảnh sách */
+.book img {
+    width: 150px;
+    height: 200px;
+    display: block;
+    margin-bottom: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Thiết lập kiểu chữ cho tiêu đề sách */
+.book-title {
+    font-size: 1.2em;
+    margin-top: 0;
+    text-align: left;
+    margin-left: 3px;
+}
+
+/* Thiết lập kiểu chữ cho giá sách */
+.book-price {
+    font-weight: bold;
+    margin-left: 3px;
+}
+
+/* Thiết lập kiểu chữ cho phần trăm giảm giá */
+.discount {
+    color: red;
+    margin-left: 3px;
+}
+
+/* Thiết lập kiểu chữ cho ghi chú sản phẩm */
+.note {
+    font-style: italic;
+    color: #666;
+    margin-left: 3px;
+}
+.authenticity img {
+    width: 20px; /* Điều chỉnh kích thước theo ý muốn */
+    vertical-align: middle; /* Canh dọc giữa với văn bản */
+    margin-right: 5px; /* Khoảng cách với văn bản */
+}
+
+.azh-container {
+    display: flex;
+    justify-content: space-between; /* Căn các phần tử với khoảng cách đều giữa chúng */
+}
+
+.azh {
+    flex: 0 1 calc(33.33% - 20px); /* Căn chỉnh kích thước của mỗi azh */
+    margin-right: 20px; /* Khoảng cách giữa các azh */
+}
+
+/* Các kiểu khác giống như trước */
+
+.azh {
+    border: 1px solid black;
+}
+
+.azh:hover {
+    border: 2px solid black;
+    background-color: rgba(128, 128, 128, 0.385);
+    transform: scale(1.05);
+}

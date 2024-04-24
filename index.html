@@ -1,9 +1,11 @@
 <html>
+
 <head>
     <title>Home</title>
     <link rel="icon" href="./image/logoHUIT.png">
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
+
 <body style="margin: 0; z-index: 1;">
     <header id="header">
         <div id="logo" style="margin-left: 20px;">SKYBOOK</div>
@@ -11,6 +13,7 @@
             <li class="main_menu"><a href="./index.html">Trang Chủ</a></li>
             <li class="main_menu"><a href="#">Sản Phẩm</a>
                 <ul id="sub_menu" type="none">
+                    <li class="sub_menu"><a href="#NewBook">Sách Mới</a></li>
                     <li class="sub_menu"><a href="#">Sách</a></li>
                     <li class="sub_menu"><a href="#">Truyện Tranh</a></li>
                     <li class="sub_menu"><a href="#">Tạp Chí</a></li>
@@ -40,24 +43,10 @@
             <img class="img_banner" src="./image/slide_3_img.jpg" alt="">
         </div>
         <div id="main">
-            <p style="margin: 0;" class="hi">xin chafo
-                <ul class="test">
-                    <li>wewe</li>
-                    <li>wwwqwe</li>
-                </ul>
-            </p>
-            <style>
-                .hi {
-                    color: red;
-                }
-                .test {
-                    display: none;
-                    color: blue;
-                }
-                .hi:hover + .test {
-                    display: block;
-                }
-            </style>
+            <div id="NewBook" style="margin: 5px;">
+                <h2 style="margin-left: 20px;">Sách Mới</h2>
+                <div id="listBook" style="width: 100%; height: auto;"></div>
+            </div>
         </div>
     </div>
     <footer id="footer">
@@ -65,6 +54,11 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="./JS/banner.js"></script>
-    <script src="./JS/base.js"></script>
+    <script>
+        window.onload = function() {
+            loadContent('azy', 'listBook'); 
+        };
+    </script>
+    <script src="./JS/base.js" ></script>
 </body>
 </html>
