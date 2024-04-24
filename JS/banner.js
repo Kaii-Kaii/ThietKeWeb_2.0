@@ -22,9 +22,3 @@ setInterval(() => {
     currentImage = nextImageIndex;
     images[currentImage].style.left = "0";
 }, 3000);
-const elements = document.querySelectorAll(".adjust-position");
-elements.forEach((element) => {
-    // Thực hiện các điều chỉnh vị trí tùy chỉnh dựa trên nhu cầu của bạn
-    element.style.bottom = "20px"; // Điều chỉnh khoảng cách từ dưới lên
-    element.style.left = "20px"; // Điều chỉnh khoảng cách từ trái sang
-});

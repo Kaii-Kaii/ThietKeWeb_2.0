@@ -9,7 +9,6 @@
     background-size: cover;
     /* Đảm bảo kích thước hình ảnh phù hợp với kích thước phần tử */
     background-position: 40% 80%;
-    /* Chọn phần cuối của ảnh làm vị trí nền */
 }
 
 #content {
@@ -52,6 +51,7 @@
     display: inline-block;
     padding: 10px;
     color: rgb(0, 0, 0);
+    position: relative;  /* Add this line */ 
 }
 
 #menu>.main_menu>a {
@@ -85,30 +85,13 @@
     margin-right: 20px;
     font-size: 30px;
 }
-
-
 .hidden {
     display: none;
 }
-
-#search-box {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 200px;
-    z-index: 10;
-    box-sizing: border-box;
-}
-
 #banner {
     width: 100%;
     display: inline-block;
-}
-
-button {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
+    z-index: 1;
 }
 #banner img {
     margin: 0;
@@ -120,3 +103,42 @@ button {
 #banner img:first-child {
     left: 0; /* Ảnh đầu tiên hiển thị */
 }
+
+.img_banner {
+    width: 100%;
+    height: auto;
+    min-height: 427.19px;
+    max-height: 427.19px;
+}
+#sub_menu {
+    top: 47px;
+    left: -17.5%;
+    text-align: center;
+    position: absolute;
+    z-index: 100;
+    display: none;
+}
+
+.sub_menu {
+    line-height: 50px;
+    border: 2px solid gray;
+    text-align: center;
+    background-color: rgba(218, 17, 198, 0.593);
+    width: auto;
+    height: 50px;
+    z-index: 100 !important;         /* Ensure it's above other elements */
+}
+
+.sub_menu > a {
+    color: black;
+    padding:  10px;
+    height: auto;
+    width: auto;
+    text-decoration: none;
+}
+
+#menu > li.main_menu > a:hover + ul#sub_menu,
+#sub_menu:hover {
+    display: block; 
+}
+
