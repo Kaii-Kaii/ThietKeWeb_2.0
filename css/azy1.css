@@ -41,6 +41,7 @@
 .book-price {
     font-weight: bold;
     margin-left: 3px;
+    display: inline-block;
 }
 
 /* Thiết lập kiểu chữ cho phần trăm giảm giá */
@@ -81,7 +82,7 @@
 }
 
 .azh:hover {
-    transform: scale(1.01);
+    transform: scale(1.005);
     box-shadow: 5px 5px 5px rgb(86, 86, 86);
     /* background-color: rgba(128, 128, 128, 0.385);
     transform: scale(1.05); */
@@ -89,4 +90,31 @@
 }
 .book-details {
     padding: 10px;
+}
+
+.cart-notification {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: none;
+}
+
+#popupThongTinSach {
+    background-color: rgb(255, 255, 255);
+    width: 700px;
+    height: 270px;
+    max-width: 700px;
+    max-height: 270px;
+    z-index: 9999;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    line-height: 30px;
 }
