@@ -1,5 +1,8 @@
 #header {
     background-color: #a4a3a3;
+    max-height: 80px;
+    min-height: 80px;
+    padding: 10px;
     color: white;
     width: 100%;
     height: auto;
@@ -12,7 +15,6 @@
     background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
     background-size: 400% 400%;
     animation: gradient 10s ease infinite;
-    margin-bottom: 40px;
 }
 
 @keyframes gradient {
@@ -33,13 +35,11 @@ body, html {
     scroll-behavior: smooth;
 }
 #content {
-    padding-top: 60px;
-}
-#content {
-    background-color: rgb(224, 224, 224);
+    /* background-color: rgb(233, 231, 231); */
     width: 100%;
     height: auto;
     margin: 0;
+    margin-top: 80px;
     padding-bottom: 50px;
 }
 
