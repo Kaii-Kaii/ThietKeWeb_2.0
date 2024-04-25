@@ -5,17 +5,37 @@
     height: auto;
     display: flex;
     align-items: center;
-    background-color: #f2b6c1;
-    position: fixed; /* Thêm thuộc tính này */
+    position: fixed;
     top: 0;
     left: 0;
-    z-index: 100; /* Đảm bảo header luôn ở trên các element khác */
+    z-index: 100;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 10s ease infinite;
+    margin-bottom: 40px;
 }
 
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth; /* Kích hoạt smooth scroll */
+}
 #content {
-    padding-top: 60px; /* Điều chỉnh giá trị này cho phù hợp với chiều cao của header */
+    padding-top: 60px;
+    /* Điều chỉnh giá trị này cho phù hợp với chiều cao của header */
 }
-
 #content {
     background-color: rgb(255, 255, 255);
     width: 100%;
@@ -36,12 +56,10 @@
     font-size: 30px;
     font-weight: bold;
     font-family: JetBrains Mono;
-    -webkit-background-clip: text;
-    background-clip: text;
-    background-image: linear-gradient(to right, aqua, blue);
-    color: transparent;
+    color: black;
     display: inline-block;
     margin-left: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
 }
 
 #menu {
@@ -176,7 +194,7 @@
 }
 
 #searchWindow li {
-    line-height:  40px;
+    line-height: 40px;
     white-space: nowrap;
     /* Ngăn văn bản xuống dòng */
     overflow: hidden;
@@ -190,3 +208,12 @@
     padding: 5px;
 }
 
+.button_c3 {
+    background-color: #15a4e7a1;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 5px;
+}

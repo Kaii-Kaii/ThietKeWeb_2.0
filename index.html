@@ -13,9 +13,9 @@
             <li class="main_menu"><a href="./index.html">Trang Chủ</a></li>
             <li class="main_menu"><a href="#">Sản Phẩm</a>
                 <ul id="sub_menu" type="none">
-                    <li class="sub_menu"><a href="#NewBook">Sách Mới</a></li>
-                    <li class="sub_menu"><a href="#">Sách</a></li>
-                    <li class="sub_menu"><a href="#">Truyện Tranh</a></li>
+                    <li class="sub_menu"><a href="#" onclick="scrollToMiddle('NewBook'); return false;">Sách Mới</a></li>
+                    <li class="sub_menu"><a href="#" onclick="scrollToMiddle('TamLyBook'); return false;">Sách Tâm Lý</a></li>
+                    <li class="sub_menu"><a href="#" onclick="scrollToMiddle('SachCap3'); return false;">Sách Cấp 3</a></li>
                     <li class="sub_menu"><a href="#">Tạp Chí</a></li>
                 </ul>
             </li>
@@ -56,6 +56,17 @@
                 <h2 style="margin-left: 20px;">Sách Tâm Lý</h2>
                 <div id="TamLy" style="width: 100%; height: auto;"></div>
             </div>
+            <div id="SachCap3" style="margin: 5px;">
+                <div style="display: flex; align-items: center;">
+                    <h2 style="margin-left: 20px; cursor: pointer;" onclick="loadContent('cap3', 'Cap3');">Sách Cấp 3</h2>
+                    <div style="margin-left: auto; margin-right: 30px;">
+                        <button class="button_c3" onclick="loadContent('lop10', 'Cap3');">Lớp 10</button>
+                        <button class="button_c3" onclick="loadContent('lop11', 'Cap3');">Lớp 11</button>
+                        <button class="button_c3" onclick="loadContent('lop12', 'Cap3');">Lớp 12</button>
+                    </div>
+                </div>
+                <div id="Cap3" style="width: 100%; height: auto;"></div>
+            </div>
         </div>
     </div>
     <footer id="footer">
@@ -67,9 +78,11 @@
         window.onload = function () {
             loadContent('azy', 'New');
             loadContent('azy', 'TamLy');
+            loadContent('Cap3', 'Cap3');
         };
     </script>
     <script src="./JS/sraech.js"></script>
-    <script src="./JS/base.js"></script>
+    <script src="./JS/loadFile.js"></script>
+    <script src="./JS/scroll.js"></script>
 </body>
 </html>

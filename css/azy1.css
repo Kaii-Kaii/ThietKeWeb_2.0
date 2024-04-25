@@ -1,13 +1,17 @@
 /* Thiết lập kiểu cho bảng */
 .book-table {
-    width: 100%; /* Chiều rộng của bảng là 100% của trang */
-    border-collapse: collapse; /* Loại bỏ khoảng cách giữa các ô */
+    width: 100%;
+    /* Chiều rộng của bảng là 100% của trang */
+    border-collapse: collapse;
+    /* Loại bỏ khoảng cách giữa các ô */
 }
 
 /* Thiết lập kiểu cho các ô trong bảng */
 .book-table td {
-    padding: 0px; /* Khoảng cách giữa nội dung và viền của ô */
-    border: 1px solid #ccc; /* Định dạng viền của ô */
+    padding: 0px;
+    /* Khoảng cách giữa nội dung và viền của ô */
+    border: 1px solid #ccc;
+    /* Định dạng viền của ô */
     margin: 0px;
 }
 
@@ -49,34 +53,49 @@
     color: #666;
     margin-left: 3px;
 }
+
 .authenticity img {
-    width: 20px; /* Điều chỉnh kích thước theo ý muốn */
-    vertical-align: middle; /* Canh dọc giữa với văn bản */
-    margin-right: 5px; /* Khoảng cách với văn bản */
+    width: 20px;
+    /* Điều chỉnh kích thước theo ý muốn */
+    vertical-align: middle;
+    /* Canh dọc giữa với văn bản */
+    margin-right: 5px;
+    /* Khoảng cách với văn bản */
 }
 
 .azh-container {
+    margin-left: 10px;
     display: flex;
-    justify-content: space-between; /* Căn các phần tử với khoảng cách đều giữa chúng */
+    justify-content: space-between;
+    /* Căn các phần tử với khoảng cách đều giữa chúng */
 }
 
 .azh {
-    flex: 0 1 calc(33.33% - 20px); /* Căn chỉnh kích thước của mỗi azh */
-    margin-right: 20px; /* Khoảng cách giữa các azh */
+    flex: 0 1 calc(33.33% - 20px);
+    /* Căn chỉnh kích thước của mỗi azh */
+    margin-right: 20px;
+    /* Khoảng cách giữa các azh */
+    position: relative; /* Thêm này để hiệu ứng vệt sáng hoạt động bình thường */
+    overflow: hidden; /* Thêm này để ẩn phần vệt sáng ngoài khung */
 }
-
-/* Các kiểu khác giống như trước */
-
-/* .azh {
-    border: 1px solid black;
-} */
 
 .azh:hover {
     box-shadow: 5px 5px 5px rgb(86, 86, 86);
     background-color: rgba(128, 128, 128, 0.385);
     transform: scale(1.05);
+    overflow: hidden;
+    animation: taoVetSang 1s infinite;
 }
 
 .book-details {
     padding: 10px;
+}
+
+@keyframes TaoVetSang {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
 }
