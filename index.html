@@ -4,24 +4,28 @@
     <title>Home</title>
     <link rel="icon" href="./image/logoHUIT.png">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <!-- <style>
+    <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-    </style> -->
+    </style>
 </head>
+
 <body style="margin: 0; z-index: 1; overflow-x: hidden;">
     <header id="header">
-        <div id="logo" style="margin-left: 20px;">SKYBOOK</div>
+        <div id="logo" style="margin-left: 20px; cursor: pointer;" role="button" tabindex="0">SKYBOOK</div>
         <ul id="menu" type="none">
             <li class="main_menu"><a href="./index.html">Trang Chủ</a></li>
             <li class="main_menu"><a href="#">Sản Phẩm</a>
                 <ul id="sub_menu" type="none">
-                    <li class="sub_menu"><a href="#" onclick="scrollToMiddle('NewBook'); return false;">Sách Mới</a></li>
-                    <li class="sub_menu"><a href="#" onclick="scrollToMiddle('TamLyBook'); return false;">Sách Tâm Lý</a></li>
-                    <li class="sub_menu"><a href="#" onclick="scrollToMiddle('SachCap3'); return false;">Sách Cấp 3</a></li>
+                    <li class="sub_menu"><a href="#" onclick="scrollToMiddle('NewBook'); return false;">Sách Mới</a>
+                    </li>
+                    <li class="sub_menu"><a href="#" onclick="scrollToMiddle('TamLyBook'); return false;">Sách Tâm
+                            Lý</a></li>
+                    <li class="sub_menu"><a href="#" onclick="scrollToMiddle('SachCap3'); return false;">Sách Cấp 3</a>
+                    </li>
                     <li class="sub_menu"><a href="#">Tạp Chí</a></li>
                 </ul>
             </li>
@@ -64,7 +68,8 @@
             </div>
             <div id="SachCap3" style="margin: 5px; padding-bottom: 10px;">
                 <div style="display: flex; align-items: center;">
-                    <h2 style="margin-left: 20px; cursor: pointer;" onclick="loadContent('cap3', 'Cap3');">Sách Cấp 3</h2>
+                    <h2 style="margin-left: 20px; cursor: pointer;" onclick="loadContent('cap3', 'Cap3');">Sách Cấp 3
+                    </h2>
                     <div style="margin-left: auto; margin-right: 30px;">
                         <button class="button_c3" onclick="loadContent('lop10', 'Cap3');">Lớp 10</button>
                         <button class="button_c3" onclick="loadContent('lop11', 'Cap3');">Lớp 11</button>
@@ -75,8 +80,7 @@
             </div>
         </div>
     </div>
-    <footer id="footer">
-    </footer>
+    <footer id="footer"></footer>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="./JS/banner.js"></script>
@@ -85,11 +89,18 @@
             loadContent('azy', 'New');
             loadContent('azy', 'TamLy');
             loadContent('Cap3', 'Cap3');
-            loadContent('footer','footer');
+            loadContent('footer', 'footer');
         };
     </script>
     <script src="./JS/sraech.js"></script>
     <script src="./JS/loadFile.js"></script>
     <script src="./JS/scroll.js"></script>
+    <script>
+        document.getElementById("logo").addEventListener("click", function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+    <script>
+    </script>
 </body>
 </html>

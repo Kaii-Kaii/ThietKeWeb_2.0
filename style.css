@@ -16,17 +16,10 @@
     background-size: 400% 400%;
     animation: gradient 10s ease infinite;
 }
-
 @keyframes gradient {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
 }
 body, html {
     height: 100%;
@@ -34,15 +27,21 @@ body, html {
     padding: 0;
     scroll-behavior: smooth;
 }
+.header-hidden {
+    transform: translateY(-100%);
+    transition: transform .3s ease-in-out;
+}
+.header-visible {
+    transform: translateY(0);
+    transition: transform .3s ease-in-out;
+}
 #content {
-    /* background-color: rgb(233, 231, 231); */
     width: 100%;
     height: auto;
     margin: 0;
     margin-top: 80px;
     padding-bottom: 50px;
 }
-
 #footer {
     background-color: #a4a3a3;
     color: white;
@@ -50,7 +49,6 @@ body, html {
     height: 150px;
     margin: 0;
 }
-
 #logo {
     font-size: 30px;
     font-weight: bold;
@@ -60,24 +58,19 @@ body, html {
     margin-left: 0;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
 }
-
 #menu {
     display: inline-block;
     text-align: center;
     padding: 0;
     margin-left: auto;
-    /* Đẩy menu sang phải */
     margin-right: auto;
 }
-
 .main_menu {
     display: inline-block;
     padding: 10px;
     color: rgb(0, 0, 0);
     position: relative;
-    /* Add this line */
 }
-
 #menu>.main_menu>a {
     font-size: 20px;
     padding: 15px;
@@ -85,61 +78,48 @@ body, html {
     text-decoration: none;
     color: rgb(0, 0, 0);
     background-color: transparent;
-    /* Thiết lập màu nền trong suốt */
     transition: background-color 0.6s ease, padding 0.3s ease;
-    /* Thêm hiệu ứng chuyển đổi */
 
 }
-
 #menu>.main_menu>a:hover {
     background-color: rgba(124, 124, 124, 0.6);
     /* Màu xám trong suốt khi hover */
     padding: 15px;
     /* Tăng kích thước padding khi hover */
 }
-
 #icon_head>li:hover {
     cursor: pointer;
 }
-
 #icon_head {
     color: black;
     display: inline-block;
     margin: 10px;
     margin-right: 20px;
     font-size: 30px;
-
 }
-
 .hidden {
     display: none;
 }
-
 #banner {
     width: 100%;
     display: inline-block;
     z-index: 1;
 }
-
 #banner img {
     margin: 0;
     position: absolute;
     left: 100%;
     transition: left 1s ease-in-out;
 }
-
 #banner img:first-child {
     left: 0;
-    /* Ảnh đầu tiên hiển thị */
 }
-
 .img_banner {
     width: 100%;
     height: auto;
     min-height: 427.19px;
     max-height: 427.19px;
 }
-
 #sub_menu {
     padding: 0;
     top: 47px;
@@ -149,7 +129,6 @@ body, html {
     z-index: 100;
     display: none;
 }
-
 .sub_menu {
     line-height: 50px;
     border: 2px solid gray;
@@ -159,7 +138,6 @@ body, html {
     height: 50px;
     z-index: 100 !important;
 }
-
 .sub_menu>a {
     color: black;
     padding: 10px;
@@ -167,16 +145,13 @@ body, html {
     width: auto;
     text-decoration: none;
 }
-
 .sub_menu:hover {
     background-color: rgba(255, 255, 255, 0.774);
 }
-
 #menu>li.main_menu>a:hover+ul#sub_menu,
 #sub_menu:hover {
     display: block;
 }
-
 #searchWindow {
     font-size: 20px;
     margin-top: 25px;
@@ -191,22 +166,16 @@ body, html {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     z-index: 2000;
 }
-
 #searchWindow li {
     line-height: 40px;
     white-space: nowrap;
-    /* Ngăn văn bản xuống dòng */
     overflow: hidden;
-    /* Ẩn phần văn bản vượt quá kích thước */
     text-overflow: ellipsis;
-    /* Thêm dấu "..." vào cuối văn bản bị ẩn */
 }
-
 #searchInput {
     width: 200px;
     padding: 5px;
 }
-
 .button_c3 {
     background-color: #15a4e7a1;
     color: white;

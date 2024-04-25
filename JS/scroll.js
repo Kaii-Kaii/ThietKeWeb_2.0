@@ -10,3 +10,21 @@ function scrollToMiddle(elementId) {
         });
     }
 }
+
+//---------------------------------
+
+let prevScrollPos = window.pageYOffset;
+window.addEventListener('scroll', function () {
+    const header = document.getElementById('header');
+    const currentScrollPos = window.pageYOffset;
+    if (prevScrollPos > currentScrollPos) {
+        // Cuộn lên
+        header.classList.remove('header-hidden');
+        header.classList.add('header-visible');
+    } else {
+        // Cuộn xuống
+        header.classList.remove('header-visible');
+        header.classList.add('header-hidden');
+    }
+    prevScrollPos = currentScrollPos;
+});
