@@ -1,3 +1,4 @@
+
 /* Thiết lập kiểu cho bảng */
 .book-table {
     width: 100%;
@@ -76,27 +77,16 @@
     background-color: white;
     margin-right: 20px;
     border-radius: 7px;
-    position: relative; /* Thêm này để hiệu ứng vệt sáng hoạt động bình thường */
-    overflow: hidden; /* Thêm này để ẩn phần vệt sáng ngoài khung */
+    cursor: pointer;
 }
 
 .azh:hover {
+    transform: scale(1.01);
     box-shadow: 5px 5px 5px rgb(86, 86, 86);
     /* background-color: rgba(128, 128, 128, 0.385);
     transform: scale(1.05); */
     overflow: hidden;
-    animation: taoVetSang 1s infinite;
 }
-
 .book-details {
     padding: 10px;
-}
-
-@keyframes TaoVetSang {
-    0% {
-        left: -100%;
-    }
-    100% {
-        left: 100%;
-    }
 }
