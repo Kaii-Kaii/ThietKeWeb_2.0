@@ -4,8 +4,14 @@
     <title>Home</title>
     <link rel="icon" href="./image/logoHUIT.png">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    </style>
 </head>
-
 <body style="margin: 0; z-index: 1; overflow-x: hidden;">
     <header id="header">
         <div id="logo" style="margin-left: 20px;">SKYBOOK</div>
@@ -41,22 +47,22 @@
             <li style="display: inline-block;"><ion-icon name="person-circle-outline"></ion-icon></li>
         </ul>
     </header>
-    <div id="content">
+    <div id="content" style="padding: 0;">
         <div id="banner" style="width: 100%; height: 427.19px; overflow: hidden; display: flex; margin-bottom: 30px;">
             <img class="img_banner" src="./image/slide_1_img.jpg" alt="">
             <img class="img_banner" src="./image/slide_2_img.jpg" alt="">
             <img class="img_banner" src="./image/slide_3_img.jpg" alt="">
         </div>
         <div id="main">
-            <div id="NewBook" style="margin: 5px;">
+            <div id="NewBook" style="margin: 5px; padding-bottom: 10px;">
                 <h2 style="margin-left: 20px;">Sách Mới</h2>
-                <div id="New" style="width: 100%; height: auto;"></div>
+                <div id="New" style="width: 100%; height: auto; padding-top: 5px;"></div>
             </div>
-            <div id="TamLyBook" style="margin: 5px;">
+            <div id="TamLyBook" style="margin: 5px; padding-bottom: 10px;">
                 <h2 style="margin-left: 20px;">Sách Tâm Lý</h2>
-                <div id="TamLy" style="width: 100%; height: auto;"></div>
+                <div id="TamLy" style="width: 100%; height: auto; padding-top: 5px;"></div>
             </div>
-            <div id="SachCap3" style="margin: 5px;">
+            <div id="SachCap3" style="margin: 5px; padding-bottom: 10px;">
                 <div style="display: flex; align-items: center;">
                     <h2 style="margin-left: 20px; cursor: pointer;" onclick="loadContent('cap3', 'Cap3');">Sách Cấp 3</h2>
                     <div style="margin-left: auto; margin-right: 30px;">
@@ -65,7 +71,7 @@
                         <button class="button_c3" onclick="loadContent('lop12', 'Cap3');">Lớp 12</button>
                     </div>
                 </div>
-                <div id="Cap3" style="width: 100%; height: auto;"></div>
+                <div id="Cap3" style="width: 100%; height: auto; padding-top: 5px;"></div>
             </div>
         </div>
     </div>
@@ -79,6 +85,7 @@
             loadContent('azy', 'New');
             loadContent('azy', 'TamLy');
             loadContent('Cap3', 'Cap3');
+            loadContent('footer','footer');
         };
     </script>
     <script src="./JS/sraech.js"></script>
