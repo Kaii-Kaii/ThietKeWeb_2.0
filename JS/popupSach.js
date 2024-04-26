@@ -7,10 +7,10 @@ function openPopupSach(id) {
             event.stopPropagation(); // Ngăn sự kiện click lan ra các phần tử cha
             const popupContent = `
             <div class="popup">
-                <span class="closeButton" style="position: absolute; top: 10px; right: 10px; cursor: pointer; background-color: rgba(255, 255, 255, 0.5); border-radius: 50%; padding: 5px;">x</span>
+                <span class="closeButton" style="position: absolute; top: 10px; right: 10px; cursor: pointer; background-color: rgba(255, 255, 255, 0.5); border-radius: 50%; padding: 5px; width: 40px; height: 40px; text-align: center;">x</span>
                 <div class="popup-content" style="display: flex;">
                     <div class="image-wrapper" style="position: relative; margin-right: 20px;">
-                        <img src="${book.querySelector('img').src}" alt="Book Cover" style="width: 280px; height: 280px; object-fit: cover;">
+                        <img src="${book.querySelector('img').src}" alt="Book Cover" style="width: 280px; height: 280px; object-fit: cover; margin: 10px">
                     </div>
                     <div class="book-details" style="flex-grow: 1;">
                         <h2 class="book-title">${book.querySelector('.book-title').textContent}</h2>
@@ -69,8 +69,8 @@ function openPopupSach(id) {
         cartNotification.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
         cartNotification.style.color = 'white';
         cartNotification.style.textAlign = 'center';
-        cartNotification.style.height = '30px';
-        cartNotification.style.maxHeight = '30px';
+        cartNotification.style.height = '40px';
+        cartNotification.style.maxHeight = '40px';
         setTimeout(() => {
             cartNotification.style.display = 'none';
         }, 3000);

@@ -215,3 +215,20 @@ body, html {
     width: 100%;
     margin-top: 10px;
 }
+
+#popupThongTinSach {
+    border-radius: 5px;
+    background-color: rgba(203, 203, 203, 0.988);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    width: 750px;
+    height: 300px;
+    max-width: 700px;
+    max-height: 300px;
+    z-index: 9999;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    line-height: 30px;
+}
