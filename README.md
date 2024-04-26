@@ -1,4 +1,4 @@
-tui hong có gì để đọc hết á!
+tui hong có gì để đọc hết á! \n
 nên hong cần phải đọc tui đâu.
 
        _
