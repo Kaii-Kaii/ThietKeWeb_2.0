@@ -119,6 +119,10 @@ html {
     font-size: 30px;
 }
 
+#icon_head > ion-icon {
+    font-size: 30px;
+}
+
 .hidden {
     display: none;
 }
@@ -148,6 +152,7 @@ html {
 }
 
 #sub_menu {
+    margin-top: 3px;
     padding: 0;
     top: 47px;
     margin-left: 5px;
@@ -159,12 +164,11 @@ html {
     column-gap: 0;
     width: auto;
     height: auto;
-
 }
 
 .sub_menu {
-    min-width: 120px;
-    max-width: 120px;
+    min-width: 150px;
+    max-width: 150px;
     line-height: 50px;
     border: 2px solid gray;
     text-align: center;
