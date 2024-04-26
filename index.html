@@ -1,10 +1,8 @@
 <html>
-
 <head>
     <title>Nhà Sách SKYBOOK</title>
     <link rel="icon" href="./image/logoHUIT.png">
     <link rel="stylesheet" type="text/css" href="./css/style.css">
-    <link rel="stylesheet" href="./css/azy1.css">
     <style>
         * {
             margin: 0;
@@ -20,12 +18,9 @@
             <li class="main_menu"><a href="./index.html">Trang Chủ</a></li>
             <li class="main_menu"><a href="#">Sản Phẩm</a>
                 <ul id="sub_menu" type="none">
-                    <li class="sub_menu"><a href="#" onclick="scrollToMiddle('NewBook'); return false;">Sách Mới</a>
-                    </li>
-                    <li class="sub_menu"><a href="#" onclick="scrollToMiddle('TamLyBook'); return false;">Sách Tâm
-                            Lý</a></li>
-                    <li class="sub_menu"><a href="#" onclick="scrollToMiddle('SachCap3'); return false;">Sách Cấp 3</a>
-                    </li>
+                    <li class="sub_menu"><a href="#" onclick="scrollToMiddle('NewBook'); return false;">Sách Mới</a></li>
+                    <li class="sub_menu"><a href="#" onclick="scrollToMiddle('TamLyBook'); return false;">Sách Tâm Lý</a></li>
+                    <li class="sub_menu"><a href="#" onclick="scrollToMiddle('SachCap3'); return false;">Sách Cấp 3</a></li>
                     <li class="sub_menu"><a href="#">Tạp Chí</a></li>
                 </ul>
             </li>
@@ -48,7 +43,8 @@
                 <ul id="searchResult" style="padding: 0;"></ul>
             </div>
             <li style="display: inline-block;"><ion-icon name="cart-outline"></ion-icon></li>
-            <li style="display: inline-block;"><ion-icon name="person-circle-outline"></ion-icon></li>
+            <li style="display: inline-block;"><ion-icon name="person-circle-outline" id="profileIcon"></ion-icon></li>
+            <div id="profile"></div>
         </ul>
     </header>
     <div id="content" style="padding-top: auto;">
@@ -60,11 +56,13 @@
         <div id="main">
             <div id="NewBook" style="margin: 5px; padding-bottom: 10px;">
                 <h2 style="margin-left: 20px;">Sách Mới</h2>
-                <div id="New" onclick="openPopupSach('.book');" style="width: 100%; height: auto; padding-top: 5px;"></div>
+                <div id="New" onclick="openPopupSach('.book');" style="width: 100%; height: auto; padding-top: 5px;">
+                </div>
             </div>
             <div id="TamLyBook" style="margin: 5px; padding-bottom: 10px;">
                 <h2 style="margin-left: 20px;">Sách Tâm Lý</h2>
-                <div id="TamLy" onclick="openPopupSach('.book');" style="width: 100%; height: auto; padding-top: 5px;"></div>
+                <div id="TamLy" onclick="openPopupSach('.book');" style="width: 100%; height: auto; padding-top: 5px;">
+                </div>
             </div>
             <div id="SachCap3" style="margin: 5px; padding-bottom: 10px;">
                 <div style="display: flex; align-items: center;">
@@ -76,7 +74,8 @@
                         <button class="button_c3" onclick="loadContent('lop12', 'Cap3');">Lớp 12</button>
                     </div>
                 </div>
-                <div id="Cap3" onclick="openPopupSach('.book');"  style="width: 100%; height: auto; padding-top: 5px;"></div>
+                <div id="Cap3" onclick="openPopupSach('.book');" style="width: 100%; height: auto; padding-top: 5px;">
+                </div>
             </div>
         </div>
     </div>
@@ -102,5 +101,6 @@
         });
     </script>
     <script src="./JS/popupSach.js"></script>
+    <script src="./JS/login.js"></script>
 </body>
 </html>

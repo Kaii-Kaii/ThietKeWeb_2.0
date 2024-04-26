@@ -187,3 +187,31 @@ body, html {
 .button_c3:hover {
     box-shadow: 2px 2px rgba(0, 0, 0, 0.2);
 }
+#profile {
+    border-radius: 5px;
+    width: 300px;
+    max-width: 300px;
+    position: absolute;
+    top: 60px;
+    right: 10px;
+    background-color: #ffffffbc;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    z-index: 10000;
+    display: none;
+}
+
+#profile.show {
+    display: block;
+}
+
+#profile h3 {
+    margin-top: 0;
+}
+
+#profile button {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+}
