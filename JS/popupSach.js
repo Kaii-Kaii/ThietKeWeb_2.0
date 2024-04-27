@@ -1,5 +1,13 @@
 let ds_daThemVaoGioHang = [];
-let bookT, bookP;
+let bookT, bookP, bookSL;
+let test_cartItemCount = document.getElementById('cartItemCount');
+
+function anSoLuong() {
+    if(test_cartItemCount.innerText == 0) {
+        test_cartItemCount.style.display = 'none';
+    }
+}
+
 function openPopupSach() {
     const books = document.querySelectorAll('.book');
     const popupThongTinSach = document.getElementById('popupThongTinSach');
@@ -21,7 +29,9 @@ function openPopupSach() {
                         <div class="rating">${book.querySelector('.rating').innerHTML}</div>
                         <p class="note">${book.querySelector('.note').textContent}</p>
                         <div class="authenticity" style="margin-bottom: 50px;">${book.querySelector('.authenticity').innerHTML}</div>
-                        <button class="addToCartBtn" style="margin-left: 200px">Thêm vào giỏ hàng</button>
+                        <label for="quantity">Số lượng</label>
+                        <input type="number" value="1" min="1" style="width: 50px; height: 30px; margin-right: 10px; border-radius: 5px;">
+                        <button class="addToCartBtn" style="margin-left: 100px; padding: 5px; border-radius: 5px;">Thêm vào giỏ hàng</button>
                     </div>
                 </div>
             </div>
@@ -36,21 +46,35 @@ function openPopupSach() {
             });
             const addToCartBtn = document.querySelector('.addToCartBtn');
             addToCartBtn.addEventListener('click', () => {
+                const SL = document.querySelector('input[type="number"]').value;
                 const bookTitle = book.querySelector('.book-title').textContent;
                 const bookPrice = book.querySelector('.book-price').textContent;
-                const test_cartItemCount = document.getElementById('cartItemCount');
                 let currentCount = parseInt(test_cartItemCount.innerText);
-                test_cartItemCount.innerText = currentCount + 1;
+                let bookExists = false;
+                ds_daThemVaoGioHang.forEach(sach => {
+                    if (sach.tenSach == bookTitle) {
+                        bookExists = true;
+                    }
+                });
+                if (!bookExists) {
+                    currentCount++;
+                    test_cartItemCount.innerText = currentCount;
+                }
                 bookT = bookTitle;
                 bookP = bookPrice;
-                init(bookT, bookP);
+                bookSL = SL;
+                init(bookT, bookP, bookSL);
                 showCartNotification(`Đã thêm ${bookTitle} vào giỏ hàng. Giá: ${bookPrice}`);
+                if(test_cartItemCount.innerText > 0) {
+                    test_cartItemCount.style.display = 'block';
+                }
                 gioHang();
             });
+            
         });
     });
     window.addEventListener('click', (event) => {
-        if (event.target !== popupThongTinSach && event.target !== closeButton) {
+        if (event.target !== popupThongTinSach && event.target !== closeButton && !popupThongTinSach.contains(event.target)) {
             popupThongTinSach.style.display = 'none';
         }
     });
@@ -88,13 +112,14 @@ function gioHang() {
     const cartContent = document.createElement('div');
     const DivCart = document.getElementById('cart');
     let cart = document.getElementById('cart');
+    cart.style.textAlign = 'left';
     cart.style.width = 'auto';
-    cart.style.maxWidth = '500px';
+    cart.style.maxWidth = '550px';
     cart.style.height = 'auto';
     cart.style.maxHeight = '500px';
     cart.style.overflow = 'hidden';
     cart.style.backgroundColor = 'gray';
-    cart.style.color = 'white';
+    cart.style.backgroundColor = "white";
     cart.style.padding = '10px';
     cart.style.display = 'none';
     cart.style.fontSize = '20px';
@@ -102,13 +127,22 @@ function gioHang() {
     cart.innerHTML = '';
 
 }
-function init(bookT, bookP) {
+function init(bookT, bookP, bookSL) {
     let giaTriKhongDauPhay = bookP.replace('.', '');
     let giaTriSoNguyen = parseInt(giaTriKhongDauPhay);
-    ds_daThemVaoGioHang.push({ "tenSach": bookT, "gia": giaTriSoNguyen });
+    let daTonTai = false; // Biến cờ để kiểm tra xem sách đã tồn tại trong danh sách hay chưa
+    ds_daThemVaoGioHang.forEach(sach => {
+        if (sach.tenSach === bookT) {
+            sach.soLuong = parseInt(sach.soLuong) + parseInt(bookSL);
+            daTonTai = true; // Đánh dấu rằng sách đã tồn tại trong danh sách
+            return;
+        }
+    });
+    // Nếu sách chưa tồn tại trong danh sách, thêm sách mới vào
+    if (!daTonTai) {
+        ds_daThemVaoGioHang.push({ "tenSach": bookT, "gia": giaTriSoNguyen, "soLuong": bookSL });
+    }
 }
-
-
 
 function showCart() {
     let totalPrice = 0;
@@ -118,31 +152,52 @@ function showCart() {
     const list = document.createElement('ul');
     // tao bang 
     const table = document.createElement('table');
-    table.style.width = '500px';
+    table.style.width = '550px';
     table.style.borderCollapse = 'collapse';
+    table.style.textAlign = 'left';
     const thead = document.createElement('thead');
     const tbody = document.createElement('tbody');
     const tr = document.createElement('tr');
     const th1 = document.createElement('th');
     const th2 = document.createElement('th');
+    const th3 = document.createElement('th');
+    const th4 = document.createElement('th');
     th1.textContent = 'Tên sách';
     th2.textContent = 'Giá';
+    th3.textContent = 'Số lượng';
+    th4.textContent = 'Thành tiền';
     tr.appendChild(th1);
     tr.appendChild(th2);
+    tr.appendChild(th3);
+    tr.appendChild(th4);
     thead.appendChild(tr);
     table.appendChild(thead);
     ds_daThemVaoGioHang.forEach(sach => {
         const tr = document.createElement('tr');
         const td1 = document.createElement('td');
         const td2 = document.createElement('td');
+        const td3 = document.createElement('td');
+        const td4 = document.createElement('td');
         td1.textContent = sach.tenSach;
         td2.textContent = sach.gia + ' đ';
+        td3.textContent = sach.soLuong;
+        td4.textContent = sach.gia * sach.soLuong + ' đ';
         tr.appendChild(td1);
         tr.appendChild(td2);
+        tr.appendChild(td3);
+        tr.appendChild(td4);
         tbody.appendChild(tr);
-        totalPrice += parseInt(sach.gia);
+        totalPrice += sach.gia * sach.soLuong;
         cartItemCount++;
     });
+    // thêm dòng trống
+    const trBlank = document.createElement('tr');
+    const tdBlank = document.createElement('td');
+    tdBlank.setAttribute('colspan', '4'); // Kết hợp tất cả các cột
+    tdBlank.style.height = '20px'; // Đặt chiều cao của dòng trống
+    trBlank.appendChild(tdBlank);
+    tbody.appendChild(trBlank);
+    // tao hang tong
     const trTotal = document.createElement('tr');
     const tdTotal = document.createElement('td');
     const tdTotalValue = document.createElement('td');
@@ -159,7 +214,6 @@ function showCart() {
     deleteAll.textContent = 'Xóa tất cả';
     // nut o ben phai
     deleteAll.style.float = 'right';
-    
     deleteAll.style.marginTop = '10px';
     deleteAll.style.padding = '5px';
     deleteAll.style.backgroundColor = 'red';
@@ -174,24 +228,25 @@ function showCart() {
         cart.innerHTML = '';
         var test_cartItemCount = document.getElementById('cartItemCount');
         test_cartItemCount.innerText = 0;
+        test_cartItemCount.style.display = 'none';
     });
     DivCart.appendChild(deleteAll);
 }
 const cartIcon = document.getElementById('cartIcon');
-    // Ẩn giỏ hàng ban đầu
-    cart.style.display = 'none';
-    cartIcon.addEventListener('click', () => {
-        cart.style.display = 'block';
-        event.stopPropagation();
-        showCart();
-    });
-    // Ẩn giỏ hàng khi click ra ngoài
-    document.addEventListener('click', (event) => {
-        const targetElement = event.target;
-        if (targetElement !== cartIcon && !cart.contains(targetElement)) {
-            cart.style.display = 'none';
-            cart.innerHTML = '';
-        }
-    });
+// Ẩn giỏ hàng ban đầu
+cart.style.display = 'none';
+cartIcon.addEventListener('click', () => {
+    cart.style.display = 'block';
+    event.stopPropagation();
+    showCart();
+});
+// Ẩn giỏ hàng khi click ra ngoài
+document.addEventListener('click', (event) => {
+    const targetElement = event.target;
+    if (targetElement !== cartIcon && !cart.contains(targetElement)) {
+        cart.style.display = 'none';
+        cart.innerHTML = '';
+    }
+});
 
 
