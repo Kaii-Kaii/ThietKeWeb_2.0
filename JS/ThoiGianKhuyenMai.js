@@ -8,12 +8,8 @@ function updateCountdown() {
     var hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     var minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
     var countdownStr = days + " ngày " + hours + " giờ " + minutes + " phút " + seconds + " giây";
-
     document.getElementById("countdown").textContent = countdownStr;
-
     setTimeout(updateCountdown, 1000);
 }
-
 updateCountdown();
