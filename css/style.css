@@ -296,3 +296,7 @@ html {
     font-size: 16px;
     border-radius: 5px;
 }
+
+.hidden {
+    display: none;
+}

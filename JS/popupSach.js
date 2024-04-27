@@ -1,4 +1,6 @@
-function openPopupSach(ds_daThemVaoGioHang) {
+let ds_daThemVaoGioHang = [];
+let bookT, bookP;
+function openPopupSach() {
     const books = document.querySelectorAll('.book');
     const popupThongTinSach = document.getElementById('popupThongTinSach');
     let cartNotification; // Biến để lưu trữ thông báo
@@ -34,14 +36,16 @@ function openPopupSach(ds_daThemVaoGioHang) {
             });
             const addToCartBtn = document.querySelector('.addToCartBtn');
             addToCartBtn.addEventListener('click', () => {
-                const ImgBook = book.querySelector('img').src;
                 const bookTitle = book.querySelector('.book-title').textContent;
                 const bookPrice = book.querySelector('.book-price').textContent;
                 const test_cartItemCount = document.getElementById('cartItemCount');
                 let currentCount = parseInt(test_cartItemCount.innerText);
                 test_cartItemCount.innerText = currentCount + 1;
-                ds_daThemVaoGioHang.push({linkSach: ImgBook, tenSach: bookTitle, gia: bookPrice});
+                bookT = bookTitle;
+                bookP = bookPrice;
+                init(bookT, bookP);
                 showCartNotification(`Đã thêm ${bookTitle} vào giỏ hàng. Giá: ${bookPrice}`);
+                gioHang();
             });
         });
     });
@@ -78,36 +82,113 @@ function openPopupSach(ds_daThemVaoGioHang) {
 }
 
 function gioHang() {
-    const ds_daThemVaoGioHang = [
-        // Thêm các sách đã thêm vào giỏ hàng ở đây
-        {linkSach: '', tenSach: 'nhan', gia: 'aaa'},
-        {linkSach: '', tenSach: 'nhan', gia: 'aaa'},
-    ];
-    ds_daThemVaoGioHang
-    const cart = document.getElementById('cart');
-    cart.style.maxWidth = '300px';
+    let totalPrice = 0;
+    let cartItemCount = 0;
+    // hien thi thong tin sach
+    const cartContent = document.createElement('div');
+    const DivCart = document.getElementById('cart');
+    let cart = document.getElementById('cart');
+    cart.style.width = 'auto';
+    cart.style.maxWidth = '500px';
     cart.style.height = 'auto';
     cart.style.maxHeight = '500px';
     cart.style.overflow = 'hidden';
     cart.style.backgroundColor = 'gray';
     cart.style.color = 'white';
     cart.style.padding = '10px';
-    cart.style.display = 'block';
+    cart.style.display = 'none';
+    cart.style.fontSize = '20px';
     cart.style.zIndex = '999999';
-    // hien thi thong tin sach
-    const cartContent = document.createElement('div');
-    ds_daThemVaoGioHang.forEach(sach => {
-        const book = document.createElement('div');
-        book.innerHTML = `
-            <div class="image-wrapper" style="position: relative; margin-right: 20px; display: inline-block">
-                <img src="${sach.linkSach}" alt="Book Cover" style="width: 50px; height: 50px; object-fit: cover; margin: 10px; max-width: 50px; max-height: 50px;">
-            </div>
-            <div class="book-details" style="display: inline-block">
-                <h2 class="book-title">${sach.tenSach}</h2>
-                <p class="book-price">${sach.gia}</p>
-            </div>
-        `;
-        cartContent.appendChild(book);
-    });
-    cart.appendChild(cartContent);
+    cart.innerHTML = '';
+
 }
+function init(bookT, bookP) {
+    let giaTriKhongDauPhay = bookP.replace('.', '');
+    let giaTriSoNguyen = parseInt(giaTriKhongDauPhay);
+    ds_daThemVaoGioHang.push({ "tenSach": bookT, "gia": giaTriSoNguyen });
+}
+
+
+
+function showCart() {
+    let totalPrice = 0;
+    let cartItemCount = 0;
+    const cartContent = document.createElement('div');
+    const DivCart = document.getElementById('cart');
+    const list = document.createElement('ul');
+    // tao bang 
+    const table = document.createElement('table');
+    table.style.width = '500px';
+    table.style.borderCollapse = 'collapse';
+    const thead = document.createElement('thead');
+    const tbody = document.createElement('tbody');
+    const tr = document.createElement('tr');
+    const th1 = document.createElement('th');
+    const th2 = document.createElement('th');
+    th1.textContent = 'Tên sách';
+    th2.textContent = 'Giá';
+    tr.appendChild(th1);
+    tr.appendChild(th2);
+    thead.appendChild(tr);
+    table.appendChild(thead);
+    ds_daThemVaoGioHang.forEach(sach => {
+        const tr = document.createElement('tr');
+        const td1 = document.createElement('td');
+        const td2 = document.createElement('td');
+        td1.textContent = sach.tenSach;
+        td2.textContent = sach.gia + ' đ';
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        tbody.appendChild(tr);
+        totalPrice += parseInt(sach.gia);
+        cartItemCount++;
+    });
+    const trTotal = document.createElement('tr');
+    const tdTotal = document.createElement('td');
+    const tdTotalValue = document.createElement('td');
+    tdTotal.textContent = 'Tổng';
+    tdTotalValue.textContent = totalPrice + ' đ';
+    trTotal.appendChild(tdTotal);
+    trTotal.appendChild(tdTotalValue);
+    tbody.appendChild(trTotal);
+    table.appendChild(tbody);
+    cartContent.appendChild(table);
+    DivCart.appendChild(cartContent);
+    // nut xoa taon bo sach
+    const deleteAll = document.createElement('button');
+    deleteAll.textContent = 'Xóa tất cả';
+    deleteAll.style.marginTop = '10px';
+    deleteAll.style.padding = '5px';
+    deleteAll.style.backgroundColor = 'red';
+    deleteAll.style.color = 'white';
+    deleteAll.style.border = 'none';
+    deleteAll.style.cursor = 'pointer';
+    deleteAll.style.borderRadius = '5px';
+    deleteAll.style.fontSize = '20px';
+    deleteAll.addEventListener('click', () => {
+        ds_daThemVaoGioHang = [];
+        cartContent.innerHTML = '';
+        cart.innerHTML = '';
+        var test_cartItemCount = document.getElementById('cartItemCount');
+        test_cartItemCount.innerText = 0;
+    });
+    DivCart.appendChild(deleteAll);
+}
+const cartIcon = document.getElementById('cartIcon');
+    // Ẩn giỏ hàng ban đầu
+    cart.style.display = 'none';
+    cartIcon.addEventListener('click', () => {
+        cart.style.display = 'block';
+        event.stopPropagation();
+        showCart();
+    });
+    // Ẩn giỏ hàng khi click ra ngoài
+    document.addEventListener('click', (event) => {
+        const targetElement = event.target;
+        if (targetElement !== cartIcon && !cart.contains(targetElement)) {
+            cart.style.display = 'none';
+            cart.innerHTML = '';
+        }
+    });
+
+
