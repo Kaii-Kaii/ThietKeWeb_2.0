@@ -5,8 +5,3 @@ $(function () {
         $(this).load(file);
     });
 });
-
-function loadContent(pageName, elementID) {
-    var file = 'HTML/' + pageName + '.html';
-    $('#' + elementID).load(file);
-}
