@@ -6,7 +6,7 @@
             { username: '1', password: '1', name: 'Nguyễn Văn C', email: 'vanc@gmail.com' },
             // Thêm các tài khoản khác ở đây
         ];
-        // Khởi tạo đối tượng người dùng
+        //z Khởi tạo đối tượng người dùng
         let user = {
             loggedIn: false,
             name: '',
