@@ -1,14 +1,17 @@
-$(function () {
-    var includes = $('[data-include]');
-    $.each(includes, function () {
-        var file = 'HTML/' + $(this).data('include') + '.html';
-        var baseURL = includes + '.html';
-        $(this).load(file, function() {
-            $(this).contents().each(function() {
-                if (this.nodeType === Node.ELEMENT_NODE) {
-                    $(this).attr('data-baseurl', baseURL);
+function loadFileWithPath(file, selector) {
+    $.get(file, function(data) {
+        var baseUrl = file.replace(/\/[^\/]*$/, '/');
+        var $temp = $('<div>').html(data);
+        $temp.find('*').addBack().each(function() {
+            var $this = $(this);
+            var attrs = ['src', 'href', 'data-src', 'data-href'];
+            $.each(attrs, function(i, attr) {
+                var value = $this.attr(attr);
+                if (value && !value.startsWith('http') && !value.startsWith('/')) {
+                    $this.attr(attr, baseUrl + value);
                 }
             });
         });
+        $(selector).html($temp.html());
     });
-});
+}

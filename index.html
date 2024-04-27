@@ -13,7 +13,6 @@
         }
     </style>
 </head>
-
 <body style="margin: 0; z-index: 1; overflow-x: hidden;">
     <header id="header">
         <div id="logo" style="margin-left: 20px; cursor: pointer;" role="button" tabindex="0">SKYBOOK</div>
@@ -67,7 +66,7 @@
                     <h2 style="margin-left: 20px; display: inline; color: rgb(255, 255, 255);">Sách Khuyến Mãi</h2>
                     <div id="countdown"></div>
                 </div>
-                <div id="KhuyenMai" data-include="azy" style="width: 100%; height: auto; padding-top: 10px;"></div>
+                <div id="KhuyenMai" style="width: 100%; height: auto; padding-top: 10px;"></div>
             </div>
             <div id="NewBook" style="margin: 5px; padding-bottom: 10px;">
                 <h2 style="margin-left: 20px;">Sách Mới</h2>
@@ -81,8 +80,7 @@
             </div>
             <div id="SachCap3" style="margin: 5px; padding-bottom: 10px;">
                 <div style="display: flex; align-items: center;">
-                    <h2 style="margin-left: 20px; cursor: pointer;" onclick="loadContent('cap3', 'Cap3');">Sách Cấp 3
-                    </h2>
+                    <h2 style="margin-left: 20px; cursor: pointer;">Sách Cấp 3</h2>
                     <div style="margin-left: auto; margin-right: 30px;">
                         <button class="button_c3" >Lớp 10</button>
                         <button class="button_c3" >Lớp 11</button>
@@ -98,6 +96,10 @@
     <script src="./JS/loadFile.js"></script>
     <script>
         window.onload = function () {
+            loadFileWithPath('HTML/azy.html', '#KhuyenMai')
+            loadFileWithPath('HTML/azy.html', '#New')
+            loadFileWithPath('HTML/azy.html', '#TamLy')
+            loadFileWithPath('HTML/cap3.html', '#Cap3')
             gioHang();
             anSoLuong()
         }
