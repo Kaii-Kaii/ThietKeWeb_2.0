@@ -157,6 +157,9 @@ function showCart() {
     // nut xoa taon bo sach
     const deleteAll = document.createElement('button');
     deleteAll.textContent = 'Xóa tất cả';
+    // nut o ben phai
+    deleteAll.style.float = 'right';
+    
     deleteAll.style.marginTop = '10px';
     deleteAll.style.padding = '5px';
     deleteAll.style.backgroundColor = 'red';
