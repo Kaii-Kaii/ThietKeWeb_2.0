@@ -1,0 +1,119 @@
+<html>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Nhà Sách SKYBOOK</title>
+    <link rel="icon" href="./image/logoHUIT.png">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body style="margin: 0; z-index: 1; overflow-x: hidden;">
+    <header id="header">
+        <div id="logo" style="margin-left: 20px; cursor: pointer;" role="button" tabindex="0">SKYBOOK</div>
+        <ul id="menu" type="none">
+            <li class="main_menu"><a href="./index.html">Trang Chủ</a></li>
+            <li class="main_menu"><a href="#">Sản Phẩm</a>
+                <ul id="sub_menu" type="none">
+                    <li class="sub_menu"><a href="#" onclick="scrollToMiddle('KhuyenMai'); return false;">Khuyến Mãi</a></li>
+                    <li class="sub_menu"><a href="#" onclick="scrollToMiddle('NewBook'); return false;">Sách Mới</a></li>
+                    <li class="sub_menu"><a href="#" onclick="scrollToMiddle('TamLyBook'); return false;">Sách TâmLý</a></li>
+                    <li class="sub_menu"><a href="#" onclick="scrollToMiddle('SachCap3'); return false;">Sách Cấp 3</a></li>
+                    <li class="sub_menu"><a href="#">Tạp Chí</a></li>
+                </ul>
+            </li>
+            <li class="main_menu"><a href="#">Giới Thiệu</a>
+                <ul id="sub_menu" type="none">
+                    <li class="sub_menu"><a href="./HTML/timeline.html">Về Chúng Tôi</a></li>
+                    <li class="sub_menu"><a href="#">Quá Trình</a></li>
+                    <li class="sub_menu"><a href="#">Sứ Mệnh</a></li>
+                </ul>
+            </li>
+            <li class="main_menu"><a href="#footer">Liên Hệ</a></li>
+        </ul>
+        <ul type="none" id="icon_head">
+            <li style="display: inline-block;">
+                <ion-icon name="search-outline" id="searchIcon"></ion-icon>
+            </li>
+            <div id="searchWindow" style="display: none;">
+                <input type="text" id="searchInput" placeholder="Tìm kiếm...">
+                <button id="closeButton" style="padding: 3px;">Đóng</button>
+                <ul id="searchResult" style="padding: 0;"></ul>
+            </div>
+            <li style="display: inline-block; font-size: 30px; position: relative;" id="cartIcon">
+                <ion-icon name="cart-outline" id="cart-outline" id="cartIcon"></ion-icon>
+                <span id="cartItemCount" style="position: absolute; bottom: -5px; right: -5px; background-color: red; color: white; border-radius: 50%; padding: 3px 6px; font-size: 14px;">0</span>
+            </li>
+            <div id="cart" style="display: none;"></div>
+            <li style="display: inline-block;"><ion-icon name="person-circle-outline" id="profileIcon"></ion-icon></li>
+            <div id="profile"></div>
+        </ul>
+    </header>
+    <div id="content" style="padding-top: auto;">
+        <div id="banner" style="width: 100%; height: 427.19px; overflow: hidden; display: flex; margin-bottom: 30px;">
+            <img class="img_banner" src="./image/slide_1_img.jpg" alt="">
+            <img class="img_banner" src="./image/slide_2_img.jpg" alt="">
+            <img class="img_banner" src="./image/slide_3_img.jpg" alt="">
+        </div>
+        <div id="main" style="width: 90%; margin-left: auto; margin-right: auto;" onclick="openPopupSach('.book')">
+            <div id="sachKhuyenMai" style="margin-top: 50px; margin-bottom: 50px; padding: 20px; border-radius: 10px; background-image: linear-gradient(to bottom, red, orange, yellow)">
+                <div style="padding: 5px;">
+                    <h2 style="margin-left: 20px; display: inline; color: rgb(255, 255, 255);">Sách Khuyến Mãi</h2>
+                    <div id="countdown"></div>
+                </div>
+                <div id="KhuyenMai" data-include="azy" style="width: 100%; height: auto; padding-top: 10px;"></div>
+            </div>
+            <div id="NewBook" style="margin: 5px; padding-bottom: 10px;">
+                <h2 style="margin-left: 20px;">Sách Mới</h2>
+                <div id="New" data-include="azy" style="width: 100%; height: auto; padding-top: 5px;">
+                </div>
+            </div>
+            <div id="TamLyBook" style="margin: 5px; padding-bottom: 10px;">
+                <h2 style="margin-left: 20px;">Sách Tâm Lý</h2>
+                <div id="TamLy" data-include="azy" style="width: 100%; height: auto; padding-top: 5px;">
+                </div>
+            </div>
+            <div id="SachCap3" style="margin: 5px; padding-bottom: 10px;">
+                <div style="display: flex; align-items: center;">
+                    <h2 style="margin-left: 20px; cursor: pointer;" onclick="loadContent('cap3', 'Cap3');">Sách Cấp 3
+                    </h2>
+                    <div style="margin-left: auto; margin-right: 30px;">
+                        <button class="button_c3" onclick="loadContent('lop10', 'Cap3');">Lớp 10</button>
+                        <button class="button_c3" onclick="loadContent('lop11', 'Cap3');">Lớp 11</button>
+                        <button class="button_c3" onclick="loadContent('lop12', 'Cap3');">Lớp 12</button>
+                    </div>
+                </div>
+                <div id="Cap3" data-include="cap3" style="width: 100%; height: auto; padding-top: 5px;"></div>
+            </div>
+        </div>
+    </div>
+    <div id="popupThongTinSach"></div>
+    <footer id="footer"></footer>
+    <script src="./JS/loadFile.js"></script>
+    <script>
+        window.onload = function () {
+            gioHang();
+            anSoLuong()
+        }
+    </script>
+    <script src="./JS/popupSach.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="./JS/banner.js"></script>
+    <script src="./JS/sraech.js"></script>
+    <script src="./JS/scroll.js"></script>
+    <script>
+        document.getElementById("logo").addEventListener("click", function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+    <script src="./JS/ThoiGianKhuyenMai.js"></script>
+    <script src="./JS/login.js"></script>
+</body>
+</html>
