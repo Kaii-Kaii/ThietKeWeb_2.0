@@ -45,8 +45,12 @@
                 <button id="closeButton" style="padding: 3px;">Đóng</button>
                 <ul id="searchResult" style="padding: 0;"></ul>
             </div>
-            <li style="display: inline-block; font-size: 30px;"><ion-icon name="cart-outline"></ion-icon></li>
+            <li style="display: inline-block; font-size: 30px; position: relative;">
+                <ion-icon name="cart-outline" id="cart-outline"></ion-icon>
+                <span id="cartItemCount" style="position: absolute; bottom: -5px; right: -5px; background-color: red; color: white; border-radius: 50%; padding: 3px 6px; font-size: 14px;">0</span>
+            </li>
             <li style="display: inline-block;"><ion-icon name="person-circle-outline" id="profileIcon"></ion-icon></li>
+            <div id="cart"></div>
             <div id="profile"></div>
         </ul>
     </header>
@@ -56,23 +60,22 @@
             <img class="img_banner" src="./image/slide_2_img.jpg" alt="">
             <img class="img_banner" src="./image/slide_3_img.jpg" alt="">
         </div>
-        <div id="main" style="width: 90%; margin-left: auto; margin-right: auto;">
+        <div id="main" style="width: 90%; margin-left: auto; margin-right: auto;" onclick="openPopupSach('.book')">
             <div id="sachKhuyenMai" style="margin-top: 50px; margin-bottom: 50px; padding: 20px; border-radius: 10px; background-image: linear-gradient(to bottom, red, orange, yellow)">
                 <div style="padding: 5px;">
                     <h2 style="margin-left: 20px; display: inline; color: rgb(255, 255, 255);">Sách Khuyến Mãi</h2>
                     <div id="countdown"></div>
                 </div>
-                <div id="KhuyenMai" onclick="openPopupSach('.book');"
-                    style="width: 100%; height: auto; padding-top: 10px;"></div>
+                <div id="KhuyenMai" style="width: 100%; height: auto; padding-top: 10px;"></div>
             </div>
             <div id="NewBook" style="margin: 5px; padding-bottom: 10px;">
                 <h2 style="margin-left: 20px;">Sách Mới</h2>
-                <div id="New" onclick="openPopupSach('.book');" style="width: 100%; height: auto; padding-top: 5px;">
+                <div id="New" style="width: 100%; height: auto; padding-top: 5px;">
                 </div>
             </div>
             <div id="TamLyBook" style="margin: 5px; padding-bottom: 10px;">
                 <h2 style="margin-left: 20px;">Sách Tâm Lý</h2>
-                <div id="TamLy" onclick="openPopupSach('.book');" style="width: 100%; height: auto; padding-top: 5px;">
+                <div id="TamLy" style="width: 100%; height: auto; padding-top: 5px;">
                 </div>
             </div>
             <div id="SachCap3" style="margin: 5px; padding-bottom: 10px;">
@@ -85,13 +88,14 @@
                         <button class="button_c3" onclick="loadContent('lop12', 'Cap3');">Lớp 12</button>
                     </div>
                 </div>
-                <div id="Cap3" onclick="openPopupSach('.book');" style="width: 100%; height: auto; padding-top: 5px;">
+                <div id="Cap3" style="width: 100%; height: auto; padding-top: 5px;">
                 </div>
             </div>
         </div>
     </div>
     <div id="popupThongTinSach"></div>
     <footer id="footer"></footer>
+    <script src="./JS/loadFile.js"></script>
     <script>
         window.onload = function () {
             loadContent('azy', 'KhuyenMai');
@@ -99,9 +103,10 @@
             loadContent('azy', 'TamLy');
             loadContent('Cap3', 'Cap3');
             loadContent('footer', 'footer');
+            gioHang();
         };
     </script>
-    <script src="./JS/loadFile.js"></script>
+    <script src="./JS/popupSach.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="./JS/banner.js"></script>
@@ -113,7 +118,6 @@
         });
     </script>
     <script src="./JS/ThoiGianKhuyenMai.js"></script>
-    <script src="./JS/popupSach.js"></script>
     <script src="./JS/login.js"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
-function openPopupSach(id) {
-    const books = document.querySelectorAll(id);
+function openPopupSach(ds_daThemVaoGioHang) {
+    const books = document.querySelectorAll('.book');
     const popupThongTinSach = document.getElementById('popupThongTinSach');
     let cartNotification; // Biến để lưu trữ thông báo
     books.forEach(book => {
@@ -23,8 +23,7 @@ function openPopupSach(id) {
                     </div>
                 </div>
             </div>
-        `;
-        
+            `;
             popupThongTinSach.innerHTML = popupContent;
             popupThongTinSach.style.display = 'block';
             const closeButton = document.querySelector('.closeButton');
@@ -33,12 +32,15 @@ function openPopupSach(id) {
                 popupThongTinSach.innerHTML = '';
                 popupThongTinSach.style.display = 'none';
             });
-
-            // Bắt sự kiện khi nhấp vào nút "Thêm vào giỏ hàng"
             const addToCartBtn = document.querySelector('.addToCartBtn');
             addToCartBtn.addEventListener('click', () => {
+                const ImgBook = book.querySelector('img').src;
                 const bookTitle = book.querySelector('.book-title').textContent;
                 const bookPrice = book.querySelector('.book-price').textContent;
+                const test_cartItemCount = document.getElementById('cartItemCount');
+                let currentCount = parseInt(test_cartItemCount.innerText);
+                test_cartItemCount.innerText = currentCount + 1;
+                ds_daThemVaoGioHang.push({linkSach: ImgBook, tenSach: bookTitle, gia: bookPrice});
                 showCartNotification(`Đã thêm ${bookTitle} vào giỏ hàng. Giá: ${bookPrice}`);
             });
         });
@@ -56,9 +58,7 @@ function openPopupSach(id) {
             cartNotification.classList.add('cart-notification');
             document.body.appendChild(cartNotification);
         }
-        // Đặt nội dung cho thông báo
         cartNotification.textContent = message;
-        // Đặt vị trí của thông báo
         const windowHeight = window.innerHeight;
         const notificationHeight = cartNotification.clientHeight;
         const notificationTop = windowHeight - notificationHeight - 70; // Vị trí từ dưới lên trên
@@ -75,4 +75,39 @@ function openPopupSach(id) {
             cartNotification.style.display = 'none';
         }, 3000);
     }
+}
+
+function gioHang() {
+    const ds_daThemVaoGioHang = [
+        // Thêm các sách đã thêm vào giỏ hàng ở đây
+        {linkSach: '', tenSach: 'nhan', gia: 'aaa'},
+        {linkSach: '', tenSach: 'nhan', gia: 'aaa'},
+    ];
+    ds_daThemVaoGioHang
+    const cart = document.getElementById('cart');
+    cart.style.maxWidth = '300px';
+    cart.style.height = 'auto';
+    cart.style.maxHeight = '500px';
+    cart.style.overflow = 'hidden';
+    cart.style.backgroundColor = 'gray';
+    cart.style.color = 'white';
+    cart.style.padding = '10px';
+    cart.style.display = 'block';
+    cart.style.zIndex = '999999';
+    // hien thi thong tin sach
+    const cartContent = document.createElement('div');
+    ds_daThemVaoGioHang.forEach(sach => {
+        const book = document.createElement('div');
+        book.innerHTML = `
+            <div class="image-wrapper" style="position: relative; margin-right: 20px; display: inline-block">
+                <img src="${sach.linkSach}" alt="Book Cover" style="width: 50px; height: 50px; object-fit: cover; margin: 10px; max-width: 50px; max-height: 50px;">
+            </div>
+            <div class="book-details" style="display: inline-block">
+                <h2 class="book-title">${sach.tenSach}</h2>
+                <p class="book-price">${sach.gia}</p>
+            </div>
+        `;
+        cartContent.appendChild(book);
+    });
+    cart.appendChild(cartContent);
 }
