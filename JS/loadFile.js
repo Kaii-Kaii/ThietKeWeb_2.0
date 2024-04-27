@@ -5,6 +5,6 @@ function loadContent(pageName, elementID) {
             document.getElementById(elementID).innerHTML = this.responseText;
         }
     };
-    xhttp.open("GET", "HTML/" + pageName + ".html", true);
+    xhttp.open("GET", pageName + ".html", true);
     xhttp.send();
 }
