@@ -1,10 +1,12 @@
+$(function () {
+    var includes = $('[data-include]');
+    $.each(includes, function () {
+        var file = 'HTML/' + $(this).data('include') + '.html';
+        $(this).load(file);
+    });
+});
+
 function loadContent(pageName, elementID) {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            document.getElementById(elementID).innerHTML = this.responseText;
-        }
-    };
-    xhttp.open("GET", pageName + ".html", true);
-    xhttp.send();
+    var file = 'HTML/' + pageName + '.html';
+    $('#' + elementID).load(file);
 }
