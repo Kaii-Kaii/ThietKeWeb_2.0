@@ -106,11 +106,6 @@ function openPopupSach() {
 }
 
 function gioHang() {
-    let totalPrice = 0;
-    let cartItemCount = 0;
-    // hien thi thong tin sach
-    const cartContent = document.createElement('div');
-    const DivCart = document.getElementById('cart');
     let cart = document.getElementById('cart');
     cart.style.textAlign = 'left';
     cart.style.width = 'auto';
@@ -149,7 +144,6 @@ function showCart() {
     let cartItemCount = 0;
     const cartContent = document.createElement('div');
     const DivCart = document.getElementById('cart');
-    const list = document.createElement('ul');
     // tao bang 
     const table = document.createElement('table');
     table.style.width = '550px';
