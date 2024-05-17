@@ -50,13 +50,13 @@
                 <span id="cartItemCount">0</span>
             </li>
             <div id="cart" style="display: none;"></div>
-            <li style="display: inline-block;"><ion-icon name="person-circle-outline" id="profileIcon"></ion-icon></li>
-            <div id="profile"></div>
+            <li style="display: inline-block;"><ion-icon name="person-circle-outline" id="profileIcon" onclick="openLogin()"></ion-icon></li>
+            <div id="profile" style="width: auto; height: auto; z-index: 100000;"></div>
         </ul>
     </header>
     <div id="content" style="padding-top: auto;">
         <div id="banner" style="width: 100%; height: 427.19px; overflow: hidden; display: flex; margin-bottom: 30px;">
-            <img class="img_banner" src="./image/slide_1_img.jpg" alt="" onclick="scrollToMiddle('KhuyenMai'); return false;">
+            <img class="img_banner" src="./image/slide_1_img.jpg" alt="">
             <img class="img_banner" src="./image/slide_2_img.jpg" alt="">
             <img class="img_banner" src="./image/slide_3_img.jpg" alt="">
         </div>
@@ -94,6 +94,7 @@
     <div id="popupThongTinSach"></div>
     <footer id="footer"></footer>
     <script src="./JS/loadFile.js"></script>
+    <script src="./JS/login.js"></script>
     <script>
         window.onload = function () {
             loadFileWithPath('HTML/azy.html', '#KhuyenMai');
@@ -120,8 +121,6 @@
     <script src="./JS/login.js"></script>
 </body>
 </html>
-
-
 <!-- 
 
        _

@@ -1,88 +1,87 @@
- //!------------------------------LOGIN--------------------------------
-        // Danh sách tài khoản và mật khẩu
-        const users = [
-            { username: 'user1', password: 'password1', name: 'Nguyễn Văn A', email: 'vana@gmail.com' },
-            { username: 'user2', password: 'password2', name: 'Trần Thị B', email: 'thib@gmail.com' },
-            { username: '1', password: '1', name: 'Nguyễn Văn C', email: 'vanc@gmail.com' },
-            // Thêm các tài khoản khác ở đây
-        ];
-        // Khởi tạo đối tượng người dùng
-        let user = {
-            loggedIn: false,
-            name: '',
-            email: ''
-        };
-        const profileIcon = document.getElementById('profileIcon');
-        const profileDiv = document.getElementById('profile');
-        function showLoginForm() {
-            const loginForm = `
-<p style="font-size:20px; text-align: center;">Đăng nhập</p>
-<input type="text" id="username" style="width:270px; margin:5px;" placeholder="Tên tài khoản" />
-<input type="password" id="password" style="width:270px; margin:5px;" placeholder="Mật khẩu" />
-<button onclick="login(event)">Đăng nhập</button>
-`;
-            profileDiv.innerHTML = loginForm;
-            profileDiv.style.display = 'block';
-        }
-        // Sự kiện click vào icon profile
-        profileIcon.addEventListener('click', () => {
-            if (!user.loggedIn) {
-                showLoginForm();
-            } else {
-                const info = `
-<p style="font-size: 14px;">${user.name}</p>
-<p style="font-size: 14px;">Email: ${user.email}</p>
-<button onclick="handleLogout(event)">Đăng xuất</button>
-`;
-                profileDiv.innerHTML = info;
-                profileDiv.style.display = 'block';
-            }
-        });
-        function login(event) {
-            event.stopPropagation();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const foundUser = users.find(u => u.username === username && u.password === password);
-            if (foundUser) {
-                // Đăng nhập thành công
-                user.loggedIn = true;
-                user.name = foundUser.name; // Lấy tên từ foundUser
-                user.email = foundUser.email; // Lấy email từ foundUser
 
-                const info = `
-<p style="font-size: 18px;">${user.name}</p>
-<p style="font-size: 18px;">Email: ${user.email}</p>
-<button onclick="handleLogout(event)">Đăng xuất</button>
-`;
-                profileDiv.innerHTML = info;
-            } else {
-                // Đăng nhập thất bại
-                const errorMessage = `
-<p>Tên tài khoản hoặc mật khẩu không đúng</p>
-<button onclick="showLoginForm()">Đăng nhập lại</button>
-`;
-                profileDiv.innerHTML = errorMessage;
-            }
+let loginWindow;
+let check = false;
+let tenNguoiDungHienTai = null;
+let profileDiv = document.getElementById('profile');
+let ds_taiKhoan = [
+    { taiKhoan: 'admin', matKhau: 'admin', hovaTen: 'Admin', email: 'admin#gmail.com', sdt: '0123456789' },
+    { taiKhoan: 'vana01', matKhau: '12345678', hovaTen: 'Văn A', email: 'vana01#gmail.com', sdt: '0123456789' },
+    { taiKhoan: 'thanh02', matKhau: '12345678', hovaTen: 'Thanh B', email: 'thanh02#gmail.com', sdt: '0123456789' },
+];
+
+window.addEventListener('message', function (event) {
+    // Kiểm tra nếu thông điệp được gửi từ cửa sổ con và có dữ liệu hợp lệ
+    if (event.data && event.data.username) {
+        var username = event.data.username;
+        tenNguoiDungHienTai = username;
+        document.getElementById('name').innerHTML = username;
+    }
+});
+
+function openLogin() {
+    if (!tenNguoiDungHienTai) {
+        loginWindow = window.open('HTML/login.html', 'login', 'width=700,height=900');
+    }
+    else {
+        // Nếu trạng thái là true, hiển thị thông tin người dùng
+        popupThongTin();
+        profileDiv.style.display = 'block';
+    }
+}
+
+function popupThongTin() {
+    let ten;
+    let email;
+    let sdt;
+    let tennguoidung;
+    for (let i = 0; i < ds_taiKhoan.length; i++) {
+        if (ds_taiKhoan[i].taiKhoan === tenNguoiDungHienTai) {
+            ten = ds_taiKhoan[i].hovaTen;
+            email = ds_taiKhoan[i].email;
+            sdt = ds_taiKhoan[i].sdt;
+            tennguoidung = ds_taiKhoan[i].taiKhoan;
+            break;
         }
-        function handleLogout(event) {
-            event.stopPropagation();
-            logout();
-            profileDiv.style.display = 'none';
+    }
+    let popupContent = `
+            <html>
+            <head>
+                <title>Thông tin người dùng</title>
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        padding: 20px;
+                    }
+                </style>
+            </head>
+            <body>
+                <div>
+                    <h2>Thông tin người dùng</h2>
+                    <p><strong>Tên người dùng:</strong> ${ten}</p>
+                    <p><strong>Email:</strong> ${email}</p>
+                    <p><strong>Số điện thoại:</strong> ${sdt}</p>
+                    <p><strong>Tài khoản:</strong> ${tennguoidung}</p>
+                </div>
+            </body>
+            </html>
+        `;
+    profileDiv.innerHTML = popupContent;
+    profileDiv.style.display = 'none';
+}
+
+function toggleForm(formId) {
+    document.getElementById('login').style.display = formId === 'login' ? 'block' : 'none';
+    document.getElementById('signup').style.display = formId === 'signup' ? 'block' : 'none';
+}
+
+function checkLogin() {
+    const taiKhoan = document.getElementById('username').value;
+    const matKhau = document.getElementById('password').value;
+    for (let i = 0; i < ds_taiKhoan.length; i++) {
+        if (ds_taiKhoan[i].taiKhoan === taiKhoan && ds_taiKhoan[i].matKhau === matKhau) {
+            trangThai = true;
+            return true;
         }
-        function logout() {
-            user.loggedIn = false;
-            user.name = '';
-            user.email = '';
-            showLoginForm();
-        }
-        const loginButton = document.querySelector('#profile button');
-        function handleClickOutside(event) {
-            if (
-                !profileDiv.contains(event.target) &&
-                event.target !== profileIcon &&
-                event.target !== loginButton
-            ) {
-                profileDiv.style.display = 'none';
-            }
-        }
-        document.addEventListener('click', handleClickOutside);
+    }
+    return false;
+}

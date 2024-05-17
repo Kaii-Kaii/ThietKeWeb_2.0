@@ -139,7 +139,7 @@ function init(bookT, bookP, bookSL) {
     }
 }
 
-function showCart() {
+function showCart() { // Hàm hiển thị giỏ hàng
     let totalPrice = 0;
     let cartItemCount = 0;
     const cartContent = document.createElement('div');
