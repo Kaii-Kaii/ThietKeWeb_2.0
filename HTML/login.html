@@ -67,7 +67,6 @@
             <input type="text" id="username" required>
             <label for="password">Password</label>
             <input type="password" name="" id="password" required>
-            <p id="thongbao" style="color: red; text-align: center;"></p>
             <button type="submit" onclick="handleLogin(event)">Login</button>
             <p>Nếu chưa có tài khoản.<a href="#" onclick="toggleForm('signup')">Tạo tài khoản</a></p>
         </form>
@@ -82,33 +81,15 @@
             <input type="email" name="" id="email">
             <label for="sdt">Số điện thoại</label>
             <input type="text" name="" id="sdt">
-            <label for="username">Username</label>
+            <label for="username_signup">Username</label>
             <input type="text" id="username_signup">
-            <label for="password">Password</label>
+            <label for="password_signup">Password</label>
             <input type="password" name="" id="password_signup">
-            <button type="submit">Sign Up</button>
+            <button onclick="handleSignup(event)">Đăng ký</button>
             <p>Nếu đã có tài khoản.<a href="#" onclick="toggleForm('login')">Đăng nhập</a></p>
         </form>
     </div>
     <script src="../JS/login.js"></script>
-    <script>
-        function handleLogin(event) {
-            var username = document.getElementById('username').value;
-            var password = document.getElementById('password').value;
-            if(!username || !password) {
-                return;
-            }
-            event.preventDefault();
-            check = checkLogin();
-            if (check) {
-                // Gửi thông tin về tên người dùng hiện tại về cửa sổ mẹ
-                window.opener.postMessage({ username: username }, '*');
-                alert('Đăng nhập thành công');
-                window.close();
-            } else {
-                alert('Đăng nhập thất bại');
-            }
-        }
-        </script>
 </body>
+
 </html>
