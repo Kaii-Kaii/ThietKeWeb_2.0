@@ -101,10 +101,10 @@ function popupThongTin() {
             </div>
             <div class="row">
                 <div class="col-6">
-                    <button onclick="closeProfile()" class="btn btn-primary">Đóng</button>
+                    <button onclick="closeProfile()" class="btn btn-primary" style="margin-top: 0px;">Đóng</button>
                 </div>
                 <div class="col-6" style="text-align: right;">
-                    <button class="btn btn-danger" onclick="DangXuat()">Đăng xuất</button>
+                    <button class="btn btn-danger" onclick="DangXuat()" style="margin-top: 0px;">Đăng xuất</button>
                 </div>
         </div>
     </body>

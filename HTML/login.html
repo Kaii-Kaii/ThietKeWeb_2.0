@@ -76,15 +76,15 @@
         <form action="" method="POST">
             <h1>Sign Up</h1>
             <label for="ten">Họ và Tên</label>
-            <input type="text" name="" id="ten">
+            <input type="text" name="" id="ten" required>
             <label for="email">Email</label>
-            <input type="email" name="" id="email">
+            <input type="email" name="" id="email" required>
             <label for="sdt">Số điện thoại</label>
-            <input type="text" name="" id="sdt">
+            <input type="text" name="" id="sdt" required>
             <label for="username_signup">Username</label>
-            <input type="text" id="username_signup">
+            <input type="text" id="username_signup" required>
             <label for="password_signup">Password</label>
-            <input type="password" name="" id="password_signup">
+            <input type="password" name="" id="password_signup required">
             <button onclick="handleSignup(event)">Đăng ký</button>
             <p>Nếu đã có tài khoản.<a href="#" onclick="toggleForm('login')">Đăng nhập</a></p>
         </form>
