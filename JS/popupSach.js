@@ -115,7 +115,7 @@ function gioHang() {
     let cart = document.getElementById('cart');
     cart.style.textAlign = 'left';
     cart.style.width = 'auto';
-    cart.style.maxWidth = '550px';
+    cart.style.maxWidth = '700px';
     cart.style.height = 'auto';
     cart.style.maxHeight = '500px';
     cart.style.overflow = 'hidden';
@@ -145,100 +145,151 @@ function init(bookT, bookP, bookSL) {
     }
 }
 
-function showCart() { // Hàm hiển thị giỏ hàng
+function showCart() {
     let totalPrice = 0;
     let cartItemCount = 0;
     const cartContent = document.createElement('div');
     const DivCart = document.getElementById('cart');
-    // tao bang 
+
+    // Xóa nội dung cũ của giỏ hàng trước khi thêm nội dung mới
+    DivCart.innerHTML = '';
+
+    // Tạo bảng
     const table = document.createElement('table');
     table.style.width = '550px';
     table.style.borderCollapse = 'collapse';
     table.style.textAlign = 'left';
+
     const thead = document.createElement('thead');
     const tbody = document.createElement('tbody');
+
     const tr = document.createElement('tr');
     const th1 = document.createElement('th');
     const th2 = document.createElement('th');
     const th3 = document.createElement('th');
     const th4 = document.createElement('th');
+    const th5 = document.createElement('th');
+
     th1.textContent = 'Tên sách';
     th2.textContent = 'Giá';
     th3.textContent = 'Số lượng';
     th4.textContent = 'Thành tiền';
+    th5.textContent = 'Xóa';
+
     tr.appendChild(th1);
     tr.appendChild(th2);
     tr.appendChild(th3);
     tr.appendChild(th4);
+    tr.appendChild(th5);
     thead.appendChild(tr);
     table.appendChild(thead);
-    ds_daThemVaoGioHang.forEach(sach => {
-        const tr = document.createElement('tr');
-        const td1 = document.createElement('td');
-        const td2 = document.createElement('td');
-        const td3 = document.createElement('td');
-        const td4 = document.createElement('td');
-        td1.textContent = sach.tenSach;
-        td2.textContent = sach.gia + ' đ';
-        td3.textContent = sach.soLuong;
-        td4.textContent = sach.gia * sach.soLuong + ' đ';
-        tr.appendChild(td1);
-        tr.appendChild(td2);
-        tr.appendChild(td3);
-        tr.appendChild(td4);
-        tbody.appendChild(tr);
-        totalPrice += sach.gia * sach.soLuong;
-        cartItemCount++;
-    });
-    // thêm dòng trống
-    const trBlank = document.createElement('tr');
-    const tdBlank = document.createElement('td');
-    tdBlank.setAttribute('colspan', '4'); // Kết hợp tất cả các cột
-    tdBlank.style.height = '20px'; // Đặt chiều cao của dòng trống
-    trBlank.appendChild(tdBlank);
-    tbody.appendChild(trBlank);
-    // tao hang tong
-    const trTotal = document.createElement('tr');
-    const tdTotal = document.createElement('td');
-    const tdTotalValue = document.createElement('td');
-    tdTotal.textContent = 'Tổng';
-    tdTotalValue.textContent = totalPrice + ' đ';
-    trTotal.appendChild(tdTotal);
-    trTotal.appendChild(tdTotalValue);
-    tbody.appendChild(trTotal);
-    table.appendChild(tbody);
-    cartContent.appendChild(table);
-    DivCart.appendChild(cartContent);
-    // nut xoa taon bo sach
-    const deleteAll = document.createElement('button');
-    deleteAll.textContent = 'Xóa tất cả';
-    // nut o ben phai
-    deleteAll.style.float = 'right';
-    deleteAll.style.marginTop = '10px';
-    deleteAll.style.padding = '5px';
-    deleteAll.style.backgroundColor = 'red';
-    deleteAll.style.color = 'white';
-    deleteAll.style.border = 'none';
-    deleteAll.style.cursor = 'pointer';
-    deleteAll.style.borderRadius = '5px';
-    deleteAll.style.fontSize = '20px';
-    deleteAll.addEventListener('click', () => {
-        ds_daThemVaoGioHang = [];
-        cartContent.innerHTML = '';
-        cart.innerHTML = '';
-        var test_cartItemCount = document.getElementById('cartItemCount');
-        test_cartItemCount.innerText = 0;
-        test_cartItemCount.style.display = 'none';
-    });
-    DivCart.appendChild(deleteAll);
+
+    if (ds_daThemVaoGioHang.length > 0) {
+        ds_daThemVaoGioHang.forEach((sach, index) => {
+            const tr = document.createElement('tr');
+            const td1 = document.createElement('td');
+            const td2 = document.createElement('td');
+            const td3 = document.createElement('td');
+            const td4 = document.createElement('td');
+            const td5 = document.createElement('td');
+
+            td1.textContent = sach.tenSach;
+            td2.textContent = sach.gia + 'đ';
+            td3.textContent = sach.soLuong;
+            td4.textContent = sach.gia * sach.soLuong + 'đ';
+
+            // Tạo nút xóa
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Xóa';
+            deleteButton.style.backgroundColor = 'red';
+            deleteButton.style.color = 'white';
+            deleteButton.style.border = 'none';
+            deleteButton.style.cursor = 'pointer';
+            deleteButton.style.borderRadius = '5px';
+            deleteButton.style.padding = '5px';
+            deleteButton.addEventListener('click', () => {
+                ds_daThemVaoGioHang.splice(index, 1);
+                cartContent.innerHTML = '';
+                showCart();
+                gioHang();
+                var cartItemCount = document.getElementById('cartItemCount');
+                cartItemCount.innerText = ds_daThemVaoGioHang.length;
+                anSoLuong();
+            });
+            td5.appendChild(deleteButton);
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            tr.appendChild(td3);
+            tr.appendChild(td4);
+            tr.appendChild(td5);
+            tbody.appendChild(tr);
+
+            totalPrice += sach.gia * sach.soLuong;
+            cartItemCount++;
+        });
+
+        // Thêm dòng trống
+        const trBlank = document.createElement('tr');
+        const tdBlank = document.createElement('td');
+        tdBlank.setAttribute('colspan', '4'); // Kết hợp tất cả các cột
+        tdBlank.style.height = '20px'; // Đặt chiều cao của dòng trống
+        trBlank.appendChild(tdBlank);
+        tbody.appendChild(trBlank);
+
+        // Tạo hàng tổng
+        const trTotal = document.createElement('tr');
+        const tdTotal = document.createElement('td');
+        const tdTotalValue = document.createElement('td');
+        tdTotal.setAttribute('colspan', '3'); // Kết hợp các cột trước tổng giá trị
+        tdTotal.textContent = 'Tổng';
+        tdTotalValue.textContent = totalPrice + ' đ';
+        trTotal.appendChild(tdTotal);
+        trTotal.appendChild(tdTotalValue);
+        tbody.appendChild(trTotal);
+
+        table.appendChild(tbody);
+        cartContent.appendChild(table);
+        DivCart.appendChild(cartContent);
+
+        // Nút xóa toàn bộ sách
+        const deleteAll = document.createElement('button');
+        deleteAll.textContent = 'Xóa tất cả';
+
+        // Nút ở bên phải
+        deleteAll.style.float = 'right';
+        deleteAll.style.marginTop = '10px';
+        deleteAll.style.padding = '5px';
+        deleteAll.style.backgroundColor = 'red';
+        deleteAll.style.color = 'white';
+        deleteAll.style.border = 'none';
+        deleteAll.style.cursor = 'pointer';
+        deleteAll.style.borderRadius = '5px';
+        deleteAll.style.fontSize = '20px';
+        deleteAll.addEventListener('click', () => {
+            ds_daThemVaoGioHang = [];
+            cartContent.innerHTML = '';
+            DivCart.innerHTML = '';
+            var cartItemCount = document.getElementById('cartItemCount');
+            cartItemCount.innerText = 0;
+            cartItemCount.style.display = 'none';
+            anSoLuong();
+        });
+        DivCart.appendChild(deleteAll);
+    } else {
+        DivCart.innerHTML = 'Giỏ hàng trống';
+    };
 }
+
+// Hiển thị giỏ hàng
 const cartIcon = document.getElementById('cartIcon');
 // Ẩn giỏ hàng ban đầu
 cart.style.display = 'none';
+// Hiển thị giỏ hàng khi click vào icon giỏ hàng
 cartIcon.addEventListener('click', () => {
     cart.style.display = 'block';
     event.stopPropagation();
     showCart();
+
 });
 // Ẩn giỏ hàng khi click ra ngoài
 document.addEventListener('click', (event) => {
