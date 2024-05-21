@@ -178,12 +178,14 @@ function handleSignup(event) {
 function checkTenNguoiDung(username) {
     for (let i = 0; i < ds_taiKhoan.length; i++) {
         if (ds_taiKhoan[i].taiKhoan === username) {
-            return false;
+            return true;
         }
     }
-    return true;
+    return false;
 }
 
+
+// Kiểm tra thông tin đăng nhập
 document.addEventListener('DOMContentLoaded', function() {
     const emailInput = document.getElementById('email');
     const emailWarning = document.getElementById('canh-bao-email');
@@ -216,6 +218,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     usernameInput.addEventListener('input', function() {
-        usernameWarning.style.display = checkTenNguoiDung(usernameInput.value) ? 'none' : 'block';
+        usernameWarning.style.display = checkTenNguoiDung(usernameInput.value) ? 'block' : 'none';
     });
 });
