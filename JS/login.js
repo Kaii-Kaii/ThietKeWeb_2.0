@@ -175,11 +175,13 @@ function handleSignup(event) {
 }
 
 
-function checkUsernameAvailability(username) {
-    return new Promise(resolve => {
-        const userExists = ds_taiKhoan.some(user => user.taiKhoan === username);
-        resolve(!userExists);
-    });
+function checkTenNguoiDung(username) {
+    for (let i = 0; i < ds_taiKhoan.length; i++) {
+        if (ds_taiKhoan[i].taiKhoan === username) {
+            return false;
+        }
+    }
+    return true;
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -214,8 +216,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     usernameInput.addEventListener('input', function() {
-        checkUsernameAvailability(usernameInput.value).then(isAvailable => {
-            (usernameWarning.style.display = isAvailable) ? 'none' : 'block';
-        });
+        usernameWarning.style.display = checkTenNguoiDung(usernameInput.value) ? 'none' : 'block';
     });
 });
