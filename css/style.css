@@ -203,7 +203,7 @@ html {
     right: 10px;
     width: 275px;
     height: auto;
-    background-color: rgba(208, 208, 208, 0.662);
+    background-color: rgb(208, 208, 208);
     padding: 10px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -244,7 +244,7 @@ html {
     position: absolute;
     top: 60px;
     right: 10px;
-    background-color: #ffffffbc;
+    background-color: #ffffff;
     border: 1px solid #ccc;
     padding: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
@@ -309,4 +309,8 @@ html {
     font-size: 14px;
     max-width: 25px;
     max-height: 25px;
+}
+
+#main>div>h2 {
+    margin-left: 20px;
 }

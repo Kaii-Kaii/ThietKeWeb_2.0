@@ -55,56 +55,60 @@ function popupThongTin() {
     let popupContent = `
     <html>
     <head>
-        <title>Thông tin người dùng</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <style>
-            body {
-                font-family: Arial, sans-serif;
-                font-size: 16px;
+            .container {
+                border: 1px solid #ccc;
+                border-radius: 5px;
             }
-            
-            h2 {
-                color: #333;
-                text-align: center;
-            }
-
-            .info-container {
+            .row {
                 display: flex;
-                flex-direction: column;
-            }
-            .info-item {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
                 border-bottom: 1px solid #ccc;
-                padding-bottom: 5px;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+            .row>div {
+                padding: 2px;
+                font-weight: bold;
+                font-size: 14px;
+            }
+            .tt {
+                text-align: right;
+                padding-right: 5px;
             }
         </style>
     </head>
     <body>
-        <div>
-            <h2>Thông tin người dùng</h2>
-            <div class="info-container">
-                <div class="info-item">
-                    <strong>Tên người dùng:</strong> <span>${ten}</span>
-                </div>
-                <div class="info-item">
-                    <strong>Email:</strong> <span>${email}</span>
-                </div>
-                <div class="info-item">
-                    <strong>Số điện thoại:</strong> <span>${sdt}</span>
-                </div>
-                <div class="info-item">
-                    <strong>Tài khoản:</strong> <span>${tennguoidung}</span>
-                </div>
+        <div class="container">
+            <div class="row">
+                <h3 style="text-align: center;">Thông tin người dùng</h3>
             </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
-            <button onclick="closeProfile()" style="margin-right: 5px;">Đóng</button>
-            <button id="logout" onclick="DangXuat()" style="margin-left: 5px;">Đăng xuất</button>
-        </div>
-        </div>        
+            <div class="row">
+                <div class="col-4">Họ và Tên:</div>
+                <div id="show-name" class="tt col-8">${ten}</div>
+            </div>
+            <div class="row">
+                <div class="col-4">Email:</div>
+                <div id="show-email" class="tt col-8">${email}</div>
+            </div>
+            <div class="row">
+                <div class="col-4">Số điện thoại:</div>
+                <div id="show-sdt" class="tt col-8">${sdt}</div>
+            </div>
+            <div class="row">
+                <div class="col-4">Tên tài khoản:</div>
+                <div id="show-username" class="tt col-8">${tennguoidung}</div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <button onclick="closeProfile()" class="btn btn-primary">Đóng</button>
+                </div>
+                <div class="col-6" style="text-align: right;">
+                    <button class="btn btn-danger" onclick="DangXuat()">Đăng xuất</button>
+                </div>
         </div>
     </body>
-    </html>
+</html>
 `;
 profileDiv.innerHTML = popupContent;
 profileDiv.style.display = 'none';
@@ -164,6 +168,8 @@ function handleSignup(event) {
         return;
     }
     event.preventDefault();
+    ds_taiKhoan.push({ taiKhoan: username_dk, matKhau: password_dk, hovaTen: hovaTen, email: email, sdt: sdt });
+    // Gửi thông tin về tên người dùng hiện tại về cửa sổ mẹ
     window.opener.postMessage({ username_dk: username_dk, password_dk: password_dk, ten: hovaTen, email: email, sdt: sdt }, '*');
     toggleForm('login');
 }

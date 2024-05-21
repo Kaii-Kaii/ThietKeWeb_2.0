@@ -22,16 +22,22 @@ function openPopupSach() {
                     <div class="image-wrapper" style="position: relative; margin-right: 20px;">
                         <img src="${book.querySelector('img').src}" alt="Book Cover" style="width: 280px; height: 280px; object-fit: cover; margin: 10px">
                     </div>
+                    <style>
+                        .addToCartBtn:hover {
+                            background-color: #4CAF50;
+                            color: white;
+                        }
+                    </style>
                     <div class="book-details" style="flex-grow: 1;">
                         <h2 class="book-title">${book.querySelector('.book-title').textContent}</h2>
                         <p class="book-price">${book.querySelector('.book-price').textContent}</p>
                         <p class="discount">${book.querySelector('.discount').textContent}</p>
                         <div class="rating">${book.querySelector('.rating').innerHTML}</div>
                         <p class="note">${book.querySelector('.note').textContent}</p>
-                        <div class="authenticity" style="margin-bottom: 50px;">${book.querySelector('.authenticity').innerHTML}</div>
+                        <div class="authenticity" style="margin-bottom: 20px;">${book.querySelector('.authenticity').innerHTML}</div>
                         <label for="quantity">Số lượng</label>
-                        <input type="number" value="1" min="1" style="width: 50px; height: 30px; margin-right: 10px; border-radius: 5px; padding: 5px;">
-                        <button class="addToCartBtn" style="margin-left: 100px; padding: 5px; border-radius: 5px;">Thêm vào giỏ hàng</button>
+                        <input type="number" value="1" min="1" style="width: 50px; height: 30px; margin-right: 10px; border-radius: 5px; padding: 10px; display: inline-block;">
+                        <button class="addToCartBtn" style="margin-left: 50px; padding: 0px; border-radius: 5px; display: inline-block;">Thêm vào giỏ hàng</button>
                     </div>
                 </div>
             </div>
