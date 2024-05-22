@@ -57,21 +57,17 @@ document.addEventListener('DOMContentLoaded', function () {
         "Tâm Lý Học Đám Đông - Gustave Le Bon",
         "Sử Ta - Trần Trọng Kim"
     ];
-    // Hàm lọc 5 mục đầu tiên từ danh sách nhân vật
     function getDefaultResults() {
         return characters.slice(0, 5);
     }
-    // Hàm hiển thị kết quả tìm kiếm trong danh sách <ul>
     function displayResults(results) {
         searchResult.innerHTML = ''; // Xóa kết quả cũ
 
         if (results.length === 0) {
-            // Nếu không có kết quả, tạo element <li> với thông báo
             const li = document.createElement('li');
             li.textContent = 'Không có mục cần tìm';
             searchResult.appendChild(li);
         } else {
-            // Nếu có kết quả, hiển thị như bình thường
             results.forEach(result => {
                 const li = document.createElement('li');
                 li.textContent = result;
@@ -90,10 +86,11 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function filterCharacters(query) {
+        const queryWords = query.toLowerCase().split(/\s+/);
         return characters.filter(character => {
             const words = character.toLowerCase().split(/\s+/);
-            return words.some(word => word.startsWith(query.toLowerCase()));
-        }).slice(0, 5); // Giới hạn 5 kết quả
+            return queryWords.every(queryWord => words.some(word => word.includes(queryWord)));
+        }).slice(0, 5);
     }
     searchInput.addEventListener('input', () => {
         const query = searchInput.value.trim();

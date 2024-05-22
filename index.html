@@ -11,6 +11,9 @@
             padding: 0;
             box-sizing: border-box;
         }
+        li {
+            cursor: pointer;
+        }
     </style>
 </head>
 <body style="margin: 0; z-index: 1; overflow-x: hidden;">
@@ -18,15 +21,22 @@
         <div id="logo" style="margin-left: 20px; cursor: pointer;" role="button" tabindex="0">SKYBOOK</div>
         <ul id="menu" type="none">
             <li class="main_menu"><a href="./index.html">Trang Chủ</a></li>
-            <li class="main_menu"><a href="#">Sản Phẩm</a>
+            <li class="main_menu"><a>Sản Phẩm</a>
                 <ul id="sub_menu" type="none">
-                    <li class="sub_menu"><a href="#" onclick="scrollToMiddle('KhuyenMai'); return false;">Khuyến Mãi</a></li>
-                    <li class="sub_menu"><a href="#" onclick="scrollToMiddle('NewBook'); return false;">Sách Mới</a></li>
-                    <li class="sub_menu"><a href="#" onclick="scrollToMiddle('TamLyBook'); return false;">Sách TâmLý</a></li>
-                    <li class="sub_menu"><a href="#" onclick="scrollToMiddle('SachCap3'); return false;">Sách Cấp 3</a></li>
-                    <li class="sub_menu"><a href="#">Tạp Chí</a></li>
+                    <li class="sub_menu" onclick="scrollToMiddle('KhuyenMai');">Khuyến Mãi</li>
+                    <li class="sub_menu" onclick="scrollToMiddle('NewBook');">Sách Mới</li>
+                    <li class="sub_menu" onclick="scrollToMiddle('TamLyBook');">Sách Tâm Lý</li>
+                    <li class="sub_menu" onclick="scrollToMiddle('SachCap3');">Sách Cấp 3
+                        <ul id="sub_menu_c3" type="none">
+                            <li class="sub_menu_c3"  onclick="loadFileWithPath('HTML/lop10.html', '#Cap3'); scrollToMiddle('SachCap3');">Lớp 10</li>
+                            <li class="sub_menu_c3" onclick="loadFileWithPath('HTML/lop11.html', '#Cap3'); scrollToMiddle('SachCap3');">Lớp 11</li>
+                            <li class="sub_menu_c3" onclick="loadFileWithPath('HTML/lop12.html', '#Cap3'); scrollToMiddle('SachCap3');">Lớp 12</li>
+                        </ul>
+                    </li>
+                    <li class="sub_menu" >Tạp Chí</li>
                 </ul>
             </li>
+            
             <li class="main_menu"><a href="./HTML/timeline.html">Giới Thiệu</a></li>
             <li class="main_menu"><a href="#footer">Liên Hệ</a></li>
         </ul>
@@ -38,8 +48,8 @@
                 <ion-icon name="search-outline" id="searchIcon"></ion-icon>
             </li>
             <div id="searchWindow" style="display: none;">
-                <input type="text" id="searchInput" placeholder="Tìm kiếm..." style="width: 170px; padding: 5px;">
-                <button id="closeButton" style="padding: 3px;">Đóng</button>
+                <input type="text" id="searchInput" placeholder="Tìm kiếm..." style="width: 80%; padding: 0px;">
+                <button id="closeButton" style="width: 50px;">Đóng</button>
                 <ul id="searchResult" style="padding: 0;"></ul>
             </div>
             <li style="display: inline-block; font-size: 30px; position: relative;" id="cartIcon">
@@ -48,7 +58,7 @@
             </li>
             <div id="cart" style="display: none;"></div>
             <li style="display: inline-block;"><ion-icon name="person-circle-outline" id="profileIcon" onclick="openLogin()"></ion-icon></li>
-            <div id="profile" style="min-width: 350px; height: auto; z-index: 100000;"></div>
+            <div id="profile" style="min-width: 350px; height: auto; z-index: 100000; display: block;"></div>
         </ul>
     </header>
     <div id="content" style="padding-top: auto;">
@@ -91,7 +101,6 @@
     <div id="popupThongTinSach"></div>
     <footer id="footer"></footer>
     <script src="./JS/loadFile.js"></script>
-    <script src="./JS/login.js"></script>
     <script>
         window.onload = function () {
             loadFileWithPath('HTML/azy.html', '#KhuyenMai');
@@ -100,6 +109,7 @@
             loadFileWithPath('HTML/Cap3.html', '#Cap3');
             loadFileWithPath('HTML/footer.html', '#footer');
             loadFileWithPath('HTML/popup.html', '#popupThongTinSach');
+            loadFileWithPath('HTML/tt_nguoidung.html', '#profile');
             gioHang();
             anSoLuong();
         }
@@ -110,6 +120,7 @@
     <script src="./JS/banner.js"></script>
     <script src="./JS/search.js"></script>
     <script src="./JS/scroll.js"></script>
+    <script src="./JS/login.js"></script>
     <script>
         document.getElementById("logo").addEventListener("click", function () {
             window.scrollTo({ top: 0, behavior: 'smooth' });

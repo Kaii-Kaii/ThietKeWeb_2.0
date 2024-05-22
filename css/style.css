@@ -153,22 +153,27 @@ html {
     max-height: 427.19px;
 }
 
-#sub_menu {
+#sub_menu,
+#sub_menu_c3 {
     margin-top: 3px;
     padding: 0;
     top: 47px;
-    margin-left: 5px;
     position: absolute;
     z-index: 100;
     background-color: rgba(255, 255, 255, 0);
     display: none;
-    column-count: 2;
+    /* column-count: 2;
     column-gap: 0;
     width: auto;
-    height: auto;
+    height: auto; */
+}
+#sub_menu_c3 {
+    top: 0;
+    left: 150px;
 }
 
-.sub_menu {
+.sub_menu,
+.sub_menu_c3 {
     min-width: 150px;
     max-width: 150px;
     line-height: 50px;
@@ -180,30 +185,35 @@ html {
     z-index: 100 !important;
 }
 
-.sub_menu>a {
+.sub_menu>a,
+.sub_menu_c3>a {
     color: black;
-    padding: 10px;
     height: auto;
     width: auto;
     text-decoration: none;
 }
 
-.sub_menu:hover {
-    background-color: rgba(255, 255, 255, 0.774);
+.sub_menu:hover,
+.sub_menu_c3:hover {
+    background-color: rgba(255, 255, 255);
 }
 
 #menu>li.main_menu>a:hover+ul#sub_menu,
-#sub_menu:hover {
+#sub_menu:hover,
+#sub_menu > li.sub_menu:hover > ul#sub_menu_c3 {
     display: block;
 }
-
+#sub_menu_c3 {
+    top: 147;
+    left: 150px;
+}
 #searchWindow {
-    font-size: 20px;
+    font-size: 16px;
     margin-top: 25px;
     position: absolute;
     top: 40px;
     right: 10px;
-    width: 275px;
+    width: 350px;
     height: auto;
     background-color: rgb(208, 208, 208);
     padding: 10px;
@@ -316,3 +326,5 @@ html {
 #main>div>h2 {
     margin-left: 20px;
 }
+
+
