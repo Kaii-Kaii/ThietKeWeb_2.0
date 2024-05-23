@@ -80,7 +80,7 @@ html {
     display: inline-block;
     text-align: center;
     padding: 0;
-    margin-left: auto;
+    margin-left: 20%;
     margin-right: auto;
     margin-top: 10px;
 }
@@ -160,13 +160,10 @@ html {
     top: 47px;
     position: absolute;
     z-index: 100;
-    background-color: rgba(255, 255, 255, 0);
     display: none;
-    /* column-count: 2;
-    column-gap: 0;
-    width: auto;
-    height: auto; */
 }
+
+
 #sub_menu_c3 {
     top: 0;
     left: 150px;
@@ -179,7 +176,8 @@ html {
     line-height: 50px;
     border: 2px solid gray;
     text-align: center;
-    background-color: rgba(124, 124, 124, 0.622);
+    color: white;
+    background-color: rgba(0, 0, 0, 0.837);
     width: auto;
     height: 50px;
     z-index: 100 !important;
@@ -187,7 +185,6 @@ html {
 
 .sub_menu>a,
 .sub_menu_c3>a {
-    color: black;
     height: auto;
     width: auto;
     text-decoration: none;
@@ -196,6 +193,7 @@ html {
 .sub_menu:hover,
 .sub_menu_c3:hover {
     background-color: rgba(255, 255, 255);
+    color: black;
 }
 
 #menu>li.main_menu>a:hover+ul#sub_menu,
