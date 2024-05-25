@@ -3,55 +3,39 @@ let bookT, bookP, bookSL;
 let test_cartItemCount = document.getElementById('cartItemCount');
 
 function anSoLuong() {
-    if(test_cartItemCount.innerText == 0) {
+    if (test_cartItemCount.innerText == 0) {
         test_cartItemCount.style.display = 'none';
     }
 }
 
 function openPopupSach() {
     const books = document.querySelectorAll('.book');
-    const popupThongTinSach = document.getElementById('popupThongTinSach');
-    let cartNotification; // Biến để lưu trữ thông báo
+    let cartNotification;
     books.forEach(book => {
         book.addEventListener('click', (event) => {
-            event.stopPropagation(); // Ngăn sự kiện click lan ra các phần tử cha
-            const popupContent = `
-            <div class="popup">
-                <span class="closeButton" style="position: absolute; top: 10px; right: 10px; cursor: pointer; background-color: rgba(255, 255, 255, 0.5); border-radius: 50%; padding: 5px; width: 40px; height: 40px; text-align: center;">x</span>
-                <div class="popup-content" style="display: flex;">
-                    <div class="image-wrapper" style="position: relative; margin-right: 20px;">
-                        <img src="${book.querySelector('img').src}" alt="Book Cover" style="width: 280px; height: 280px; object-fit: cover; margin: 10px">
-                    </div>
-                    <style>
-                        .addToCartBtn:hover {
-                            background-color: #4CAF50;
-                            color: white;
-                        }
-                    </style>
-                    <div class="book-details" style="flex-grow: 1;">
-                        <h2 class="book-title">${book.querySelector('.book-title').textContent}</h2>
-                        <p class="book-price">${book.querySelector('.book-price').textContent}</p>
-                        <p class="discount">${book.querySelector('.discount').textContent}</p>
-                        <div class="rating">${book.querySelector('.rating').innerHTML}</div>
-                        <p class="note">${book.querySelector('.note').textContent}</p>
-                        <div class="authenticity" style="margin-bottom: 20px;">${book.querySelector('.authenticity').innerHTML}</div>
-                        <label for="quantity">Số lượng</label>
-                        <input type="number" value="1" min="1" style="width: 50px; height: 30px; margin-right: 10px; border-radius: 5px; padding: 10px; display: inline-block;">
-                        <button class="addToCartBtn" style="background-color: rgb(51, 206, 255); margin-left: 50px; padding: 2px; border-radius: 5px; display: inline-block;">Thêm vào giỏ hàng</button>
-                    </div>
-                </div>
-            </div>
-            `;
-            popupThongTinSach.innerHTML = popupContent;
+            event.stopPropagation();
+            const img = book.querySelector('img').src;
+            console.log(img);
+            document.getElementById('img_popup').src = img;
+            document.getElementById('book-title').textContent = book.querySelector('.book-title').textContent;
+            document.getElementById('book-price').textContent = book.querySelector('.book-price').textContent;
+            document.getElementById('discount').textContent = book.querySelector('.discount').textContent;
+            document.getElementById('rating').textContent = book.querySelector('.rating').textContent;
+            loadFileWithPath('popup.html', '#popupThongTinSach');
             popupThongTinSach.style.display = 'block';
+
             const closeButton = document.querySelector('.closeButton');
             closeButton.addEventListener('click', (event) => {
                 event.stopPropagation();
-                popupThongTinSach.innerHTML = '';
                 popupThongTinSach.style.display = 'none';
             });
+
             const addToCartBtn = document.querySelector('.addToCartBtn');
-            addToCartBtn.addEventListener('click', () => {
+            // Loại bỏ sự kiện click cũ để tránh đăng ký nhiều lần
+            const newAddToCartBtn = addToCartBtn.cloneNode(true);
+            addToCartBtn.parentNode.replaceChild(newAddToCartBtn, addToCartBtn);
+
+            newAddToCartBtn.addEventListener('click', () => {
                 const SL = document.querySelector('input[type="number"]').value;
                 const bookTitle = book.querySelector('.book-title').textContent;
                 const bookPrice = book.querySelector('.book-price').textContent;
@@ -71,23 +55,23 @@ function openPopupSach() {
                 bookSL = SL;
                 init(bookT, bookP, bookSL);
                 showCartNotification(`Đã thêm ${bookTitle} vào giỏ hàng. Giá: ${bookPrice}`);
-                if(test_cartItemCount.innerText > 0) {
+                if (test_cartItemCount.innerText > 0) {
                     test_cartItemCount.style.display = 'block';
                 }
                 gioHang();
             });
-            
+
         });
     });
+
     window.addEventListener('click', (event) => {
         if (event.target !== popupThongTinSach && event.target !== closeButton && !popupThongTinSach.contains(event.target)) {
             popupThongTinSach.style.display = 'none';
         }
     });
-    // Hàm để hiển thị thông báo và đặt vị trí
+
     function showCartNotification(message) {
         if (!cartNotification) {
-            // Nếu thông báo chưa được tạo, tạo mới nó
             cartNotification = document.createElement('div');
             cartNotification.classList.add('cart-notification');
             document.body.appendChild(cartNotification);
@@ -95,7 +79,7 @@ function openPopupSach() {
         cartNotification.textContent = message;
         const windowHeight = window.innerHeight;
         const notificationHeight = cartNotification.clientHeight;
-        const notificationTop = windowHeight - notificationHeight - 70; // Vị trí từ dưới lên trên
+        const notificationTop = windowHeight - notificationHeight - 70;
         cartNotification.style.top = notificationTop + 'px';
         cartNotification.style.display = 'block';
         cartNotification.style.padding = '10px';
@@ -110,6 +94,7 @@ function openPopupSach() {
         }, 3000);
     }
 }
+
 
 function gioHang() {
     let cart = document.getElementById('cart');
@@ -176,6 +161,20 @@ function showCart() {
     th4.textContent = 'Thành tiền';
     th5.textContent = 'Xóa';
 
+    // padding left 5px
+    th1.style.paddingLeft = '5px';
+    th2.style.paddingLeft = '5px';
+    th3.style.paddingLeft = '5px';
+    th4.style.paddingLeft = '5px';
+    th5.style.paddingLeft = '5px';
+
+    // border
+    th1.style.border = '1px solid black';
+    th2.style.border = '1px solid black';
+    th3.style.border = '1px solid black';
+    th4.style.border = '1px solid black';
+    th5.style.border = '1px solid black';
+
     tr.appendChild(th1);
     tr.appendChild(th2);
     tr.appendChild(th3);
@@ -207,6 +206,8 @@ function showCart() {
             deleteButton.style.cursor = 'pointer';
             deleteButton.style.borderRadius = '5px';
             deleteButton.style.padding = '5px';
+            deleteButton.style.marginTop = '5px';
+            deleteButton.style.marginBottom = '5px';
             deleteButton.addEventListener('click', () => {
                 ds_daThemVaoGioHang.splice(index, 1);
                 cartContent.innerHTML = '';
@@ -217,6 +218,19 @@ function showCart() {
                 anSoLuong();
             });
             td5.appendChild(deleteButton);
+
+            // border
+            td1.style.border = '1px solid black';
+            td2.style.border = '1px solid black';
+            td3.style.border = '1px solid black';
+            td4.style.border = '1px solid black';
+            td5.style.border = '1px solid black';
+            // padding 5px
+            td1.style.padding = '5px';
+            td2.style.padding = '5px';
+            td3.style.padding = '5px';
+            td4.style.padding = '5px';
+            td5.style.padding = '5px';
             tr.appendChild(td1);
             tr.appendChild(td2);
             tr.appendChild(td3);
@@ -228,7 +242,6 @@ function showCart() {
             cartItemCount++;
         });
 
-        // Thêm dòng trống
         const trBlank = document.createElement('tr');
         const tdBlank = document.createElement('td');
         tdBlank.setAttribute('colspan', '4'); // Kết hợp tất cả các cột
@@ -254,7 +267,6 @@ function showCart() {
         // Nút xóa toàn bộ sách
         const deleteAll = document.createElement('button');
         deleteAll.textContent = 'Xóa tất cả';
-
         // Nút ở bên phải
         deleteAll.style.float = 'right';
         deleteAll.style.marginTop = '10px';
