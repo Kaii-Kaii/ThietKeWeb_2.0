@@ -37,7 +37,7 @@ function openPopupSach() {
                         <div class="authenticity" style="margin-bottom: 20px;">${book.querySelector('.authenticity').innerHTML}</div>
                         <label for="quantity">Số lượng</label>
                         <input type="number" value="1" min="1" style="width: 50px; height: 30px; margin-right: 10px; border-radius: 5px; padding: 10px; display: inline-block;">
-                        <button class="addToCartBtn" style="background-color: rgb(26, 87, 200); margin-left: 50px; padding: 0px; border-radius: 5px; display: inline-block;">Thêm vào giỏ hàng</button>
+                        <button class="addToCartBtn" style="background-color: rgb(51, 206, 255); margin-left: 50px; padding: 2px; border-radius: 5px; display: inline-block;">Thêm vào giỏ hàng</button>
                     </div>
                 </div>
             </div>
