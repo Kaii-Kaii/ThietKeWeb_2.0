@@ -18,7 +18,6 @@ window.addEventListener('message', function (event) {
         tenNguoiDungHienTai = username;
         user_hienTai.textContent = `${username}`;
         setTT();
-        profileDiv.style.display = 'block';
     }
     // Kiểm tra nếu thông điệp được gửi từ cửa sổ con và có dữ liệu hợp lệ
     if (event.data && event.data.username_dk) {
