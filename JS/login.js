@@ -9,6 +9,7 @@ let ds_taiKhoan = [
     { taiKhoan: 'thanh02', matKhau: '12345678', hovaTen: 'Thanh B', email: 'thanh02@gmail.com', sdt: '0123456789' },
 ];
 
+// Ẩn thông tin cá nhân khi chưa đăng nhập
 profileDiv.style.display = 'none';
 
 window.addEventListener('message', function (event) {
@@ -30,6 +31,7 @@ window.addEventListener('message', function (event) {
     }
 });
 
+// Mở cửa sổ đăng nhập
 function openLogin() {
     if (!tenNguoiDungHienTai) {
         Swal.fire({
@@ -48,6 +50,7 @@ function openLogin() {
     }
 }
 
+// Hiển thị thông tin cá nhân
 function setTT() {
     let ten;
     let email;
@@ -68,6 +71,7 @@ function setTT() {
     document.getElementById("show-username").innerHTML = tennguoidung;
 }
 
+// Đăng xuất
 function DangXuat() {
     tenNguoiDungHienTai = null;
     user_hienTai.textContent = '';
@@ -79,11 +83,13 @@ function closeProfile() {
     profileDiv.style.display = 'none';
 }
 
+// Đóng cửa sổ đăng nhập
 function toggleForm(formId) {
     document.getElementById('login').style.display = formId === 'login' ? 'block' : 'none';
     document.getElementById('signup').style.display = formId === 'signup' ? 'block' : 'none';
 }
 
+// Kiểm tra thông tin đăng nhập
 function checkLogin(username, password) {
     for (let i = 0; i < ds_taiKhoan.length; i++) {
         if (ds_taiKhoan[i].taiKhoan === username && ds_taiKhoan[i].matKhau === password) {
@@ -133,7 +139,7 @@ function LoginThatBai() {
     });
 }
 
-function DangXuatConfirm() {
+function XacNhanDangXuat() {
     Swal.fire({
         title: "Bạn có chắc muốn đăng xuất?",
         icon: "warning",
@@ -146,7 +152,9 @@ function DangXuatConfirm() {
             DangXuat();
             Swal.fire({
                 title: "Đăng xuất thành công",
-                icon: "success"
+                icon: "success",
+                showConfirmButton: false,
+                timer: 1500
             });
         }
     });
