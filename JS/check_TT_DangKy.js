@@ -64,7 +64,7 @@ document.getElementById('bt_dangky').addEventListener('click', function (event) 
             title: "Đăng ký thất bại",
             text: "Vui lòng kiểm tra lại thông tin",
             showConfirmButton: false,
-            timer: 15000
+            timer: 1000
         });
     }
 });
