@@ -1,8 +1,3 @@
-tui hong có gì để đọc hết á!
+Link source code: https://github.com/Kaii-Kaii/ThietKeWeb_2.0
 
-nên hong cần phải đọc tui đâu.
-
-       _
-    ._(.)>  MEOOW!
-     \__)
-&#126;&#126;&#126;&#126;&#126;&#126;&#126;&#126;&#126;
+Github Pages: https://kaii-kaii.github.io/ThietKeWeb_2.0/
