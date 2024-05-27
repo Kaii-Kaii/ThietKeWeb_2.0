@@ -208,6 +208,10 @@ function showCart() {
             deleteButton.style.padding = '5px';
             deleteButton.style.marginTop = '5px';
             deleteButton.style.marginBottom = '5px';
+            deleteButton.style.textAlign = 'center';
+            deleteButton.style.marginLeft = 'auto';
+            deleteButton.style.marginRight = 'auto';
+
             deleteButton.addEventListener('click', () => {
                 ds_daThemVaoGioHang.splice(index, 1);
                 cartContent.innerHTML = '';
