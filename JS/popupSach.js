@@ -21,6 +21,7 @@ function openPopupSach() {
             document.getElementById('book-price').textContent = book.querySelector('.book-price').textContent;
             document.getElementById('discount').textContent = book.querySelector('.discount').textContent;
             document.getElementById('rating').textContent = book.querySelector('.rating').textContent;
+            document.getElementById('solg').value = 1;
             loadFileWithPath('popup.html', '#popupThongTinSach');
             popupThongTinSach.style.display = 'block';
 
