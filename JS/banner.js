@@ -21,4 +21,4 @@ setInterval(() => {
     images[previousImageIndex].style.left = "100%";
     currentImage = nextImageIndex;
     images[currentImage].style.left = "0";
-}, 3000);
+}, 3000); // thoi gian chuyen anh

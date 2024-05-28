@@ -21,7 +21,7 @@
     <header id="header">
         <div id="logo" style="margin-left: 20px; cursor: pointer;" role="button" tabindex="0">SKYBOOK</div>
         <ul id="menu" type="none">
-            <li class="main_menu"><a href="./index.html">Trang Chủ</a></li>
+            <li class="main_menu" id="trangchu"><a href="#">Trang Chủ</a></li>
             <li class="main_menu"><a>Sản Phẩm</a>
                 <ul id="sub_menu" type="none">
                     <li class="sub_menu" onclick="scrollToMiddle('KhuyenMai');">Khuyến Mãi</li>
@@ -37,7 +37,6 @@
                     <li class="sub_menu" >Tạp Chí</li>
                 </ul>
             </li>
-            
             <li class="main_menu"><a href="./HTML/timeline.html">Giới Thiệu</a></li>
             <li class="main_menu"><a href="#footer">Liên Hệ</a></li>
         </ul>
@@ -124,6 +123,9 @@
     <script src="./JS/login.js"></script>
     <script>
         document.getElementById("logo").addEventListener("click", function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        document.getElementById("trangchu").addEventListener("click", function () {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     </script>
